@@ -15,11 +15,12 @@ public class TeacherVO {
 	private String tc_email;
 	private String tc_picname;
 	private String tc_savedpicid;
+	private String tc_check;
 	
 	public TeacherVO(){}
-	
-	public TeacherVO(String tc_id, String tc_pw, String tc_name, String tc_dob, String tc_phone, 
-			String tc_email,String tc_picname, String tc_savedpicid) {
+
+	public TeacherVO(String tc_id, String tc_pw, String tc_name, String tc_dob, String tc_phone, String tc_email,
+			String tc_picname, String tc_savedpicid, String tc_check) {
 		super();
 		this.tc_id = tc_id;
 		this.tc_pw = tc_pw;
@@ -29,6 +30,7 @@ public class TeacherVO {
 		this.tc_email = tc_email;
 		this.tc_picname = tc_picname;
 		this.tc_savedpicid = tc_savedpicid;
+		this.tc_check = tc_check;
 	}
 
 	public String getTc_id() {
@@ -95,11 +97,19 @@ public class TeacherVO {
 		this.tc_savedpicid = tc_savedpicid;
 	}
 
+	public String getTc_check() {
+		return tc_check;
+	}
+
+	public void setTc_check(String tc_check) {
+		this.tc_check = tc_check;
+	}
+
 	@Override
 	public String toString() {
 		return "TeacherVO [tc_id=" + tc_id + ", tc_pw=" + tc_pw + ", tc_name=" + tc_name + ", tc_dob=" + tc_dob
 				+ ", tc_phone=" + tc_phone + ", tc_email=" + tc_email + ", tc_picname=" + tc_picname
-				+ ", tc_savedpicid=" + tc_savedpicid + "]";
+				+ ", tc_savedpicid=" + tc_savedpicid + ", tc_check=" + tc_check + "]";
 	}
 }
 
