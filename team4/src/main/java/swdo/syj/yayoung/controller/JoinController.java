@@ -10,14 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-
+import swdo.syj.yayoung.dao.JoinDao;
 import swdo.syj.yayoung.file.FileService;
 import swdo.syj.yayoung.vo.TeacherVO;
-import swdo.syj.yayoung.dao.JoinDao;
 
 @Controller
 @RequestMapping("join")
 public class JoinController {
+
 	
 	@Autowired
 	JoinDao dao;
