@@ -6,7 +6,7 @@ package swdo.syj.yayoung.vo;
  * 2019/08/09
  * */
 public class TeacherVO {
-	//
+	//왜??><
 	private String tc_id;
 	private String tc_pw;
 	private String tc_name;
