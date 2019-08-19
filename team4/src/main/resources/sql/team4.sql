@@ -276,6 +276,8 @@ CREATE TABLE teacher
 	tc_picname ,
 	-- 저장된 사진 이름
 	tc_savedpicid varchar2(30) NOT NULL,
+	-- 권한 승인 여부
+	tc_check varchar2(1) default 'n',
 	PRIMARY KEY (tc_id)
 );
 
