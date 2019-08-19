@@ -15,7 +15,7 @@ public class TeacherVO {
 	private String tc_email;
 	private String tc_picname;
 	private String tc_savedpicid;
-	private String tc_check;
+	private String tc_check;	//2019-08-19 변수 추가, 우다슬
 	
 	public TeacherVO(){}
 

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
-<script src='<c:url value="/js/jquery-3.4.1.js" />'></script>
+<script src="../resources/js/jquery-3.4.1.js"></script>
 <script>
 function formCheck(){
 	 var id = document.getElementById('id');
@@ -26,20 +26,33 @@ function formCheck(){
 function toJoin(){
 	location.href="../join/join_tc";
 }
- 
+
+function toId(){
+	var url = "../login/idFind_tc";
+    var name = "idFind";
+    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+    window.open(url, name, option);
+}
+
+function toPw(){
+	var url = "../login/pwFind_tc";
+    var name = "pwFind";
+    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+    window.open(url, name, option);
+}
 </script>
 </head>
 <body>
-<h1>[LOGIN]</h1>
-<form action="login" method="post" onsubmit="return formCheck()">
+<h1>[TEACHER LOGIN]</h1>
+<form action="login_tc" method="post" onsubmit="return formCheck()">
 <table>
 	<tr>
 		<th>아이디</th>
-		<td><input type="text" id="id" name="userid"></td>
+		<td><input type="text" id="id" name="tc_id"></td>
 	</tr>
 	<tr>
 		<th>비밀번호</th>
-		<td><input type="password" id="pw" name="userpwd"></td>
+		<td><input type="password" id="pw" name="tc_pw"></td>
 	</tr>
 	<tr>
 		<th><input type="button" id="join" onclick="toJoin()" value="회원가입"></th>
@@ -51,6 +64,6 @@ function toJoin(){
 	</tr>
 </table>
 </form>
-	
+${msg }	
 </body>
 </html>
