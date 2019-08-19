@@ -91,7 +91,7 @@ table{margin: 0 auto;}
 <body>
 <div>
 <h1>[ Sign up for a teacher ]</h1>
-<form id="joinform" action="insert_tc" method="POST" onsubmit="return joinformCheck();">
+<form id="joinform" action="insert_tc" method="POST" enctype="multipart/form-data" onsubmit="return joinformCheck();" >
 <table>
 	<tr>
 		<td>아이디</td>
@@ -115,7 +115,7 @@ table{margin: 0 auto;}
 	<tr>
 		<td>사진 등록</td>
 		<td><!-- 회원 사진 등록 -->
-			<input type="file" name="upload" id="upload" size="30">
+			<input type="file" name="tc_picname" id="tc_picname" size="30">
 			<input type="button" value="+" onclick="addUpload()">
 			<p id = "add"></p>
 		</td><!-- name은 컨트롤러의 변수명과 같게 -->
