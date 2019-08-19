@@ -5,10 +5,12 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="swdo.syj.yayoung.vo.StudentVO" alias="Student" />
+		<typeAlias type="swdo.syj.yayoung.vo.TeacherVO" alias="Teacher" />
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="loginMapper.xml"/>
+		<mapper resource="joinMapper.xml"/>
 	</mappers>
 	
 </configuration>
