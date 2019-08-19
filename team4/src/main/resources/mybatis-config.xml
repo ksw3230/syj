@@ -10,7 +10,7 @@
 	
 	<mappers>
 		<mapper resource="loginMapper.xml"/>
-		<mapper resource="joinMapper.xml"/>
+		<mapper resource="JoinMapper.xml"/>
 	</mappers>
 	
 </configuration>

@@ -8,6 +8,8 @@
 
 	<!-- 선생님 회원가입 -->
 	<insert id="insert_tc" parameterType="Teacher">
-		insert into teacher() values()
+		insert
+			into teacher(tc_id, tc_pw, tc_name, tc_dob, tc_phone, tc_email) 
+			values(#{tc_id}, #{tc_pw}, #{tc_name}, #{tc_dob}, #{tc_phone}, #{tc_email})
 	</insert>
 </mapper>
