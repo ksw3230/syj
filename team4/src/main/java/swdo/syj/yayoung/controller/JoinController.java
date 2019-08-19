@@ -12,12 +12,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import swdo.syj.yayoung.file.FileService;
 import swdo.syj.yayoung.vo.TeacherVO;
+import swdo.syj.yayoung.dao.Autowired;
 import swdo.syj.yayoung.dao.JoinDao;
 
 @Controller
 @RequestMapping("join")
 public class JoinController {
 
+	@Autowired
 	JoinDao dao;
 	
 	final String uploadPath_tc = "/memberfile/teacher";	//선생님 파일 업로드 경로
