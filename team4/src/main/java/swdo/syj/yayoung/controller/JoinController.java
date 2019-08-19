@@ -72,11 +72,11 @@ public class JoinController {
 		
 		if (cnt != 1) {
 			model.addAttribute("msg", "글을 저장에 실패했습니다.");
-			return "redirect:boardform";
+			return "redirect:join_tc";
 		}
 		model.addAttribute("msg", "글을 저장했습니다.");
 		
-		return "redirect:boardlist";
+		return "redirect:/";
 //		return "redirect:/boardlist";
 			//는  www.naver/board/boardlist가 아니라 www.naver/boardlist로 감
 	}
