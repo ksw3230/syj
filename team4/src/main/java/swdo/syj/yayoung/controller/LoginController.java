@@ -23,6 +23,7 @@ public class LoginController {
 	@Autowired
 	LoginDao dao;
 	
+	// 선생님 로그인 폼으로 이동
 	@RequestMapping(value="login_tc", method=RequestMethod.GET)
 	public String loginForm_tc(){
 			
