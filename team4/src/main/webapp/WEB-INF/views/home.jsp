@@ -114,6 +114,11 @@
       		<br>
       		<a href="join/join_tc">선생님 회원가입</a>
       		<a href="join/join_st">학생 회원가입</a>
+      		<br>
+      		<br>
+      		<br>
+      		<a href="lecture/insertClass">강의등록</a>
+      		
       	
       </aside>
 

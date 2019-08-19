@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/main/java/swdo/syj/yayoung/dao/JoinDao2.java=UTF-8
+encoding//src/main/java/swdo/syj/yayoung/dao/JoinDao.java=UTF-8
+encoding//src/main/java/swdo/syj/yayoung/dao/JoinMapper.java=UTF-8
 encoding//src/main/java/swdo/syj/yayoung/dao/LoginDao.java=UTF-8
 encoding//src/main/java/swdo/syj/yayoung/dao/LoginMapper.java=UTF-8

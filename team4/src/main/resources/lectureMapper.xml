@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 회원정보 처리 SQL -->
-<mapper namespace="swdo.syj.yayoung.dao.LoginMapper">
+<mapper namespace="swdo.syj.yayoung.dao.LectureMapper">
 
 	
 </mapper>

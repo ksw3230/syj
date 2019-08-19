@@ -93,22 +93,48 @@ CREATE TABLE Indexcard
 	PRIMARY KEY (card_set_num)
 );
 
-
 CREATE TABLE ins_class
 (
 	-- 강의등록 번호
 	ins_num  number NOT NULL,
+	-- 강의 제목
+	ins_title varchar2(30) not null,
+	-- 강의 설명
+	ins_des varchar2(500) not null,
+	-- 강의등록일
+	ins_date date default sysdate,
+	-- 카테고리
+	ins_cate varchar2(20) not null,
+	-- 동영상 목록
+	ins_vidlist varchar2(3000),
+	-- 가격
+	ins_price number,
+	-- 대표썸네일
+	ins_thumbnail varchar2(50),
+	-- 대표썸네일실제저장이름
+	ins_thumbnailsave varchar2(50),
 	-- 선생님 아이디
-	-- 
 	tc_id varchar2(20) NOT NULL,
 	PRIMARY KEY (ins_num )
 );
 
-
+-- 강의동영상
 CREATE TABLE ins_class_vid
 (
 	-- 강의 비디오 번호
 	vid_num number NOT NULL,
+	--동영상 제목
+	vid_title varchar2(30) not null,
+	--동영상 강의 설명
+	vid_desc varchar2(500) not null,
+	-- 동영상 저장이름
+	vid_vidname varchar2(50),
+	-- 동영상 실제 저장 이름
+	vid_vidsavename varchar2(50),
+	-- 썸네일이름
+	vid_thumbnail varchar2(50),
+	-- 썸네일실제저장이름
+	vid_thumbsavename varchar2(50),
 	-- 강의등록 번호
 	ins_num  number NOT NULL,
 	PRIMARY KEY (vid_num)
@@ -249,7 +275,7 @@ CREATE TABLE student
 	-- 레벨
 	st_level varchar2(5) NOT NULL,
 	-- 사진이름
-	st_picname ,
+	st_picname varchar2(50),
 	-- 저장되는 사진의 이름
 	st_savedpicname varchar2(30),
 	PRIMARY KEY (st_id)
@@ -273,7 +299,7 @@ CREATE TABLE teacher
 	-- 이메일
 	tc_email varchar2(30) NOT NULL,
 	-- 사진이름
-	tc_picname ,
+	tc_picname varchar2(50),
 	-- 저장된 사진 이름
 	tc_savedpicid varchar2(30) NOT NULL,
 	-- 권한 승인 여부
