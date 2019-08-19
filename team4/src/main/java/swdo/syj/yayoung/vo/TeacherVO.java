@@ -8,7 +8,7 @@ package swdo.syj.yayoung.vo;
 public class TeacherVO {
 	private String tc_id;
 	private String tc_pw;
-	private String tc_name;//ㅗㅗㅗ
+	private String tc_name;
 	private String tc_dob;
 	private String tc_phone;
 	private String tc_email;
