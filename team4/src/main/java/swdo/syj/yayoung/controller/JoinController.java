@@ -12,10 +12,23 @@ public class JoinController {
 
 	private static final Logger logger = LoggerFactory.getLogger(JoinController.class);
 	
-	@RequestMapping(value="join", method=RequestMethod.GET)
+	/*
+	 * 선생님 가입 폼 이동
+	 * */
+	@RequestMapping(value="join_tc", method=RequestMethod.GET)
 	public String loginForm_tc(){
-			
-		return "join/join";
+		
+		return "join/join_tc";
 	}
+	
+	/*
+	 * 학생 가입 폼 이동
+	 * */
+	@RequestMapping(value="join_st", method=RequestMethod.GET)
+	public String loginForm_st(){
+			
+		return "join/join_st";
+	}
+	
 	
 }
