@@ -6,10 +6,9 @@ package swdo.syj.yayoung.vo;
  * 2019/08/09
  * */
 public class TeacherVO {
-	//github왜안되지???
 	private String tc_id;
 	private String tc_pw;
-	private String tc_name;
+	private String tc_name;//ㅗㅗㅗ
 	private String tc_dob;
 	private String tc_phone;
 	private String tc_email;
