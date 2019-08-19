@@ -91,7 +91,7 @@ table{margin: 0 auto;}
 <body>
 <div>
 <h1>[ Sign up for a teacher ]</h1>
-<form id="joinform" action="join" method="post" onsubmit="return joinformCheck();">
+<form id="joinform" action="insert_tc" method="POST" onsubmit="return joinformCheck();">
 <table>
 	<tr>
 		<td>아이디</td>

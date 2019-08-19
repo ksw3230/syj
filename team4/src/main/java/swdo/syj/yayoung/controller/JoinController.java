@@ -53,12 +53,12 @@ public class JoinController {
 			, MultipartFile upload) {
 				//MultipartFile 객체를 통해 파일을 받음
 		
-		/*
-			logger.debug(upload.getContentType());
-			logger.debug(upload.getOriginalFilename());
-			logger.debug("" + upload.getSize());
-			logger.debug("" + upload.isEmpty());
-		*/
+		logger.debug("입력받은값: {}", tc);
+		logger.debug(upload.getContentType());
+		logger.debug(upload.getOriginalFilename());
+		logger.debug("" + upload.getSize());
+		logger.debug("" + upload.isEmpty());
+		
 		
 		
 		//첨부파일이 있는 경우 지정된 경로에 저장하고, 원본 파일명과 저장된 파일명을 Board객체에 세팅
