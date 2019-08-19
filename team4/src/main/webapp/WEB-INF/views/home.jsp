@@ -110,10 +110,11 @@
       <aside>
       	<br><br><br><br><br><br><br>
       	
-      		<a href="login/login_tc">학생로그인</a>
-      		<a href="login/login_st">선생님로그인</a>
+      		<a href="login/login_tc">선생님 로그인</a>
+      		<a href="login/login_st">학생 로그인</a>
       		<br>
-      		<a href="join/join">회원가입</a>
+      		<a href="join/join_tc">선생님 회원가입</a>
+      		<a href="join/join_st">학생 회원가입</a>
       	
       </aside>
 
