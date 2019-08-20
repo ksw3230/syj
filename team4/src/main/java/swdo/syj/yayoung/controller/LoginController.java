@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import swdo.syj.yayoung.dao.LoginDao;
+import swdo.syj.yayoung.vo.StudentVO;
 import swdo.syj.yayoung.vo.TeacherVO;
 
 @Controller
@@ -44,7 +45,7 @@ public class LoginController {
 	@RequestMapping(value="login_tc", method=RequestMethod.POST)
 	public String login_tc(String tc_id, String tc_pw, HttpSession session, Model model){
 				
-		TeacherVO vo = dao.idcheck(tc_id);
+		TeacherVO vo = dao.idcheck_tc(tc_id);
 		
 		if (vo != null && tc_pw.equals(vo.getTc_pw()) && vo.getTc_check().equals("y")) {
 			session.setAttribute("loginId_tc", vo.getTc_id());
@@ -57,9 +58,9 @@ public class LoginController {
 	}
 	
 	/*
-	 * 선생님 로그아웃	
+	 * 선생님, 학생 로그아웃	
 	 * */
-	@RequestMapping(value = "logout_tc", method = RequestMethod.GET)
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session){
 		session.invalidate();
 		return "redirect:/";			
@@ -79,7 +80,7 @@ public class LoginController {
 	@ResponseBody
 	@RequestMapping(value="idFind_tc", method=RequestMethod.POST, produces="application/json;charset/UTF-8")
 	public String idFind_tc(TeacherVO vo){
-		TeacherVO find = dao.findId(vo);
+		TeacherVO find = dao.findId_tc(vo);
 		String FindId = find.getTc_id();
 		return FindId;
 	}
@@ -108,7 +109,7 @@ public class LoginController {
 	 * */
 	@RequestMapping(value="pwFind_tc", method=RequestMethod.POST)
 	public String pwFind_tc(TeacherVO vo, Model model){
-		String findPw = dao.findPw(vo);
+		String findPw = dao.findPw_tc(vo);
 		if (findPw != null) {
 			/*	비밀번호 수정 폼으로 이동*/
 			model.addAttribute("teacher", vo);
@@ -123,7 +124,7 @@ public class LoginController {
 	 * */
 	@RequestMapping(value="pwUpdate_tc", method=RequestMethod.POST)
 	public String pwUpdate_tc(String tc_pw, String tc_id, Model model){
-		int cnt = dao.UpdatePw(tc_pw, tc_id);
+		int cnt = dao.UpdatePw_tc(tc_pw, tc_id);
 		if (cnt != 0) {
 			model.addAttribute("close", "close");
 			return "login/login_tc";
@@ -140,10 +141,87 @@ public class LoginController {
 		return "login/login_st";
 	}
 	
+	/* 
+	 * 학생 로그인 성공 시 홈으로 이동
+	 * 학생 로그인 실패시 로그인 홈으로 이동
+	 * */
+	@RequestMapping(value="login_st", method=RequestMethod.POST)
+	public String login_st(String st_id, String st_pw, HttpSession session, Model model){
+				
+		StudentVO vo = dao.idcheck_st(st_id);
+		
+		if (vo != null && st_pw.equals(vo.getSt_pw())) {
+			session.setAttribute("loginId_st", vo.getSt_id());
+			return "redirect:/";		
+		}else {
+			model.addAttribute("msg", "id나 pw가 일치하지 않습니다.");
+		}
+		
+		return "login/login_st";
+	}
 	
+	/*
+	 * 학생 아이디 찾기 폼
+	 * */
+	@RequestMapping(value="idFind_st", method=RequestMethod.GET)
+	public String idFindForm_st(){		
+		return "login/idFind_st";
+	}
 	
+	/*
+	 * 학생 아이디 찾기
+	 * */
+	@ResponseBody
+	@RequestMapping(value="idFind_st", method=RequestMethod.POST, produces="application/json;charset/UTF-8")
+	public String idFind_st(StudentVO vo){
+		StudentVO find = dao.findId_st(vo);
+		String FindId = find.getSt_id();
+		return FindId;
+	}
 	
+	/*
+	 * 아이디를 찾은 후 학생 비밀번호 찾기 폼
+	 * vo를 모델 담기(아이디, 이름, 생년월일, 이메일) 
+	 * */
+	@RequestMapping(value="pwFindForm_st", method=RequestMethod.POST)
+	public String pwFindForm_st(StudentVO vo, Model model){
+		model.addAttribute("student", vo);
+		return "login/pwFind_st";
+	}
 	
+	/*
+	 * 바로 비밀번호 찾기 클릭 시 학생 비밀번호 찾기 폼
+	 * */
+	@RequestMapping(value="pwFindForm_st", method=RequestMethod.GET)
+	public String pwFindForm_st(){
+		return "login/pwFind_st";
+	}
 	
+	/*
+	 * 학생 비밀번호 찾기
+	 * */
+	@RequestMapping(value="pwFind_st", method=RequestMethod.POST)
+	public String pwFind_st(StudentVO vo, Model model){
+		String findPw = dao.findPw_st(vo);
+		if (findPw != null) {
+			/*	비밀번호 수정 폼으로 이동*/
+			model.addAttribute("student", vo);
+			return "login/pwUpdate_st";			
+		}
+		model.addAttribute("msg", "해당 정보에 일치하는 비밀번호가 존재하지 않습니다.");
+		return "login/pwFind_st";
+	}
 	
+	/*
+	 * 학생 비밀번호 수정
+	 * */
+	@RequestMapping(value="pwUpdate_st", method=RequestMethod.POST)
+	public String pwUpdate_st(String st_pw, String st_id, Model model){
+		int cnt = dao.UpdatePw_st(st_pw, st_id);
+		if (cnt != 0) {
+			model.addAttribute("close", "close");
+			return "login/login_st";
+		}
+		return "login/pwUpdate_st";
+	}	
 }

@@ -6,23 +6,45 @@
 <!-- 회원정보 처리 SQL -->
 <mapper namespace="swdo.syj.yayoung.dao.LoginMapper">
 	<!-- 선생님 아이디 확인  -->
-	<select id="idcheck" parameterType="String" resultType="Teacher">
+	<select id="idcheck_tc" parameterType="String" resultType="Teacher">
 		select * from teacher where tc_id = #{tc_id}
 	</select>
 	
 	<!-- 선생님 아이디 찾기  -->
-	<select id="findId" parameterType="Teacher" resultType="Teacher">
+	<select id="findId_tc" parameterType="Teacher" resultType="Teacher">
 		select tc_id from teacher where tc_name = #{tc_name} and tc_dob = #{tc_dob} and tc_email = #{tc_email}
 	</select>
 	
 	<!-- 선생님 비밀번호 찾기  -->
-	<select id="findPw" parameterType="Teacher" resultType="String">
+	<select id="findPw_tc" parameterType="Teacher" resultType="String">
 		select tc_pw from teacher 
 		where tc_id = #{tc_id} and tc_name = #{tc_name} and tc_dob = #{tc_dob} and tc_email = #{tc_email}
 	</select>
 	
 	<!-- 선생님 비밀번호 수정  -->
-	<update id="UpdatePw" parameterType="String">
+	<update id="UpdatePw_tc" parameterType="String">
 		update teacher set tc_pw = #{0} where tc_id = #{1}
 	</update>
+	
+	<!-- 학생 아이디 확인  -->
+	<select id="idcheck_st" parameterType="String" resultType="Student">
+		select * from student where st_id = #{st_id}
+	</select>
+	
+	<!-- 학생 아이디 찾기  -->
+	<select id="findId_st" parameterType="Student" resultType="Student">
+		select st_id from student where st_name = #{st_name} and st_dob = #{st_dob} and st_email = #{st_email}
+	</select>
+	
+	<!-- 학생 비밀번호 찾기  -->
+	<select id="findPw_st" parameterType="Student" resultType="String">
+		select st_pw from student 
+		where st_id = #{st_id} and st_name = #{st_name} and st_dob = #{st_dob} and st_email = #{st_email}
+	</select>
+	
+	<!-- 학생 비밀번호 수정  -->
+	<update id="UpdatePw_st" parameterType="String">
+		update student set st_pw = #{0} where st_id = #{1}
+	</update>
+	
 </mapper>

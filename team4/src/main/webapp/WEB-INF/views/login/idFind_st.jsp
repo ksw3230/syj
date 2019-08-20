@@ -11,25 +11,25 @@ $(document).ready(function(){
 });
 
 function idFind() {
-	var tc_name = $('#name').val();
-	var tc_dob = $('#dob').val();
-	var tc_email = $('#email').val();
+	var st_name = $('#name').val();
+	var st_dob = $('#dob').val();
+	var st_email = $('#email').val();
 	
-	if(tc_name == ""){
+	if(st_name == ""){
 		alert('이름을 입력하세요');
 		return;
 	}
-	if(tc_dob == ""){
+	if(st_dob == ""){
 		alert('생년월일을 입력하세요');
 		return;
 	}
-	if(tc_email == ""){
+	if(st_email == ""){
 		alert('이메일을 입력하세요');
 		return;
 	}
 	
 	$.ajax({
-		url: 'idFind_tc',
+		url: 'idFind_st',
 		type: 'post',
 		data: $('#info').serialize(),
 		dataType: 'text',
@@ -46,20 +46,20 @@ function idFind() {
 <title>Insert title here</title>
 </head>
 <body>
-<h1>[TEACHER ID FIND]</h1>
-<form action="pwFindForm_tc" method="post" onsubmit="return formCheck()" id="info">
+<h1>[STUDENT ID FIND]</h1>
+<form action="pwFindForm_st" method="post" onsubmit="return formCheck()" id="info">
 <table>
 	<tr>
 		<th>이름</th>
-		<td><input type="text" id="name" name="tc_name"></td>
+		<td><input type="text" id="name" name="st_name"></td>
 	</tr>
 	<tr>
 		<th>생년월일</th>
-		<td><input type="text" id="dob" name="tc_dob" placeholder="YYYY-MM-DD형식"></td>
+		<td><input type="text" id="dob" name="st_dob" placeholder="YYYY-MM-DD형식"></td>
 	</tr>
 	<tr>
 		<th>이메일</th>
-		<td><input type="email" id="email" name="tc_email"></td>
+		<td><input type="email" id="email" name="st_email"></td>
 	</tr>
 	<tr>
 		<th><input type="button" id="idFind" value="아이디 찾기"></th>

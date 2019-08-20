@@ -4,30 +4,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 <script>
 	function formCheck() {
-		var tc_id = document.getElementById('id');
-		var tc_name = document.getElementById('name');
-		var tc_dob = document.getElementById('dob');
-		var tc_email = document.getElementById('email');
+		var st_id = document.getElementById('id');
+		var st_name = document.getElementById('name');
+		var st_dob = document.getElementById('dob');
+		var st_email = document.getElementById('email');
 		
-		if(tc_id == ""){
+		if(st_id == ""){
 			alert('아이디를 입력하세요');
 			return false;
 		}
 		
-		if(tc_name == ""){
+		if(st_name == ""){
 			alert('이름을 입력하세요');
 			return false;
 		}
 		
-		if(tc_dob == ""){
+		if(st_dob == ""){
 			alert('생년월일을 입력하세요');
 			return false;
 		}
 		
-		if(tc_email == ""){
+		if(st_email == ""){
 			alert('이메일을 입력하세요');
 			return false;
 		}
@@ -37,24 +36,24 @@
 </script>
 </head>
 <body>
-<h1>[TEACHER PW FIND]</h1>
-<form action="pwFind_tc" method="post" onsubmit="return formCheck()">
+<h1>[STUDENT PW FIND]</h1>
+<form action="pwFind_st" method="post" onsubmit="return formCheck()">
 <table>
 	<tr>
 		<th>아이디</th>
-		<td><input type="text" id="id" name="tc_id" value="${teacher.tc_id }"></td>
+		<td><input type="text" id="id" name="st_id" value="${student.st_id }"></td>
 	</tr>
 	<tr>
 		<th>이름</th>
-		<td><input type="text" id="name" name="tc_name" value="${teacher.tc_name }"></td>
+		<td><input type="text" id="name" name="st_name" value="${student.st_name }"></td>
 	</tr>
 	<tr>
 		<th>생년월일</th>
-		<td><input type="text" id="dob" name="tc_dob" value="${teacher.tc_dob }"></td>
+		<td><input type="text" id="dob" name="st_dob" value="${student.st_dob }"></td>
 	</tr>
 	<tr>
 		<th>이메일</th>
-		<td><input type="email" id="email" name="tc_email" value="${teacher.tc_email }"></td>
+		<td><input type="email" id="email" name="st_email" value="${student.st_email }"></td>
 	</tr>
 	<tr>
 		<th><input type="submit" value="비밀번호 찾기"></th>
