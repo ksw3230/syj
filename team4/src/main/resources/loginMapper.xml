@@ -5,8 +5,24 @@
 
 <!-- 회원정보 처리 SQL -->
 <mapper namespace="swdo.syj.yayoung.dao.LoginMapper">
-<!-- 아이디 확인  -->
+	<!-- 선생님 아이디 확인  -->
 	<select id="idcheck" parameterType="String" resultType="Teacher">
 		select * from teacher where tc_id = #{tc_id}
 	</select>
+	
+	<!-- 선생님 아이디 찾기  -->
+	<select id="findId" parameterType="Teacher" resultType="Teacher">
+		select tc_id from teacher where tc_name = #{tc_name} and tc_dob = #{tc_dob} and tc_email = #{tc_email}
+	</select>
+	
+	<!-- 선생님 비밀번호 찾기  -->
+	<select id="findPw" parameterType="Teacher" resultType="String">
+		select tc_pw from teacher 
+		where tc_id = #{tc_id} and tc_name = #{tc_name} and tc_dob = #{tc_dob} and tc_email = #{tc_email}
+	</select>
+	
+	<!-- 선생님 비밀번호 수정  -->
+	<update id="UpdatePw" parameterType="String">
+		update teacher set tc_pw = #{0} where tc_id = #{1}
+	</update>
 </mapper>
