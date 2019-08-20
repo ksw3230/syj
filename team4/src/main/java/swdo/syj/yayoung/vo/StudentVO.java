@@ -13,13 +13,15 @@ public class StudentVO {
 	private String st_name;				//이름
 	private String st_dob;				//생년월일
 	private String st_email;			//이메일
-	private String st_levle;			//레벨
+	private String st_level;			//레벨		2019.08.20 스펠링 수정, 김지수
 	private String st_picname;			//사진이름
 	private String st_savedpicname;		//저장되는 사진의 이름
 	
-	public StudentVO() {}
+	public StudentVO() {
+		super();
+	}
 
-	public StudentVO(String st_id, String st_pw, String st_name, String st_dob, String st_email, String st_levle,
+	public StudentVO(String st_id, String st_pw, String st_name, String st_dob, String st_email, String st_level,
 			String st_picname, String st_savedpicname) {
 		super();
 		this.st_id = st_id;
@@ -27,7 +29,7 @@ public class StudentVO {
 		this.st_name = st_name;
 		this.st_dob = st_dob;
 		this.st_email = st_email;
-		this.st_levle = st_levle;
+		this.st_level = st_level;
 		this.st_picname = st_picname;
 		this.st_savedpicname = st_savedpicname;
 	}
@@ -72,12 +74,12 @@ public class StudentVO {
 		this.st_email = st_email;
 	}
 
-	public String getSt_levle() {
-		return st_levle;
+	public String getSt_level() {
+		return st_level;
 	}
 
-	public void setSt_levle(String st_levle) {
-		this.st_levle = st_levle;
+	public void setSt_level(String st_level) {
+		this.st_level = st_level;
 	}
 
 	public String getSt_picname() {
@@ -99,9 +101,10 @@ public class StudentVO {
 	@Override
 	public String toString() {
 		return "StudentVO [st_id=" + st_id + ", st_pw=" + st_pw + ", st_name=" + st_name + ", st_dob=" + st_dob
-				+ ", st_email=" + st_email + ", st_levle=" + st_levle + ", st_picname=" + st_picname
+				+ ", st_email=" + st_email + ", st_level=" + st_level + ", st_picname=" + st_picname
 				+ ", st_savedpicname=" + st_savedpicname + "]";
 	}
+	
 	
 	
 }
