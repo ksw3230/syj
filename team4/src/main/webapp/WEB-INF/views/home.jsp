@@ -107,9 +107,10 @@ main {
 
   </div>
 
+<c:if test="${loginId_tc != null}">
   <div class="w3-bar-block">
 
-    <a href="#aa" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의등록</a> 
+    <a href="lecture/insertClass" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의등록</a> 
 
     <a href="#bb" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제등록</a> 
 
@@ -125,6 +126,7 @@ main {
 	 
 	<a href="#hh" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">F&A</a>
   </div>
+</c:if>
 
 </nav>
 
