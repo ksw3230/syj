@@ -268,8 +268,9 @@ CREATE TABLE student
 	-- 이름
 	st_name varchar2(20) NOT NULL,
 	-- 생년월일
-	-- 
 	st_dob varchar2(20) NOT NULL,
+	-- 전화번호
+	st_phone varchar2(20) NOT NULL,
 	-- 이메일
 	st_email varchar2(30) NOT NULL,
 	-- 레벨
