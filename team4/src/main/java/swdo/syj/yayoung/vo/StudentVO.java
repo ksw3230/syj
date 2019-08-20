@@ -12,6 +12,7 @@ public class StudentVO {
 	private String st_pw;				//비밀번호
 	private String st_name;				//이름
 	private String st_dob;				//생년월일
+	private String st_phone;			//연락처		2019.08.20 변수 추가, 김지수
 	private String st_email;			//이메일
 	private String st_level;			//레벨		2019.08.20 스펠링 수정, 김지수
 	private String st_picname;			//사진이름
@@ -21,13 +22,14 @@ public class StudentVO {
 		super();
 	}
 
-	public StudentVO(String st_id, String st_pw, String st_name, String st_dob, String st_email, String st_level,
-			String st_picname, String st_savedpicname) {
+	public StudentVO(String st_id, String st_pw, String st_name, String st_dob, String st_phone, String st_email,
+			String st_level, String st_picname, String st_savedpicname) {
 		super();
 		this.st_id = st_id;
 		this.st_pw = st_pw;
 		this.st_name = st_name;
 		this.st_dob = st_dob;
+		this.st_phone = st_phone;
 		this.st_email = st_email;
 		this.st_level = st_level;
 		this.st_picname = st_picname;
@@ -66,6 +68,14 @@ public class StudentVO {
 		this.st_dob = st_dob;
 	}
 
+	public String getSt_phone() {
+		return st_phone;
+	}
+
+	public void setSt_phone(String st_phone) {
+		this.st_phone = st_phone;
+	}
+
 	public String getSt_email() {
 		return st_email;
 	}
@@ -101,10 +111,9 @@ public class StudentVO {
 	@Override
 	public String toString() {
 		return "StudentVO [st_id=" + st_id + ", st_pw=" + st_pw + ", st_name=" + st_name + ", st_dob=" + st_dob
-				+ ", st_email=" + st_email + ", st_level=" + st_level + ", st_picname=" + st_picname
-				+ ", st_savedpicname=" + st_savedpicname + "]";
+				+ ", st_phone=" + st_phone + ", st_email=" + st_email + ", st_level=" + st_level + ", st_picname="
+				+ st_picname + ", st_savedpicname=" + st_savedpicname + "]";
 	}
-	
 	
 	
 }
