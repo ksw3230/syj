@@ -68,11 +68,14 @@ $(document).ready(function(){
 });
 
 function joinformCheck(){
-	var personID = document.getElementById('id');
-	var personPW = document.getElementById('password');
-	var personNAME = document.getElementById('name');
+	var tc_ID = document.getElementById('tc_id');
+	var tc_PW = document.getElementById('tc_pw');
+	var tc_NAME = document.getElementById('tc_name');
+	var tc_DOB = document.getElementById('tc_dob');
+	var tc_PHONE = document.getElementById('tc_phone');
+	var tc_EMAIL = document.getElementById('tc_email');
 	
-	if (personID.value == '' || personPW.value == '') {
+	if (tc_ID.value == '' || tc_PW.value == '' || tc_NAME == '' || tc_DOB == '' || tc_PHONE == '' || tc_EMAIL == '') {
 		alert('필수입력입니다.');
 		return false;
 	}
@@ -91,7 +94,7 @@ table{margin: 0 auto;}
 <body>
 <div>
 <h1>[ Sign up for a teacher ]</h1>
-<form id="joinform" action="insert_tc" method="POST" onsubmit="return joinformCheck();" >	<!-- enctype="multipart/form-data"  method옆에 적어야 함, 파일만 추가하면 오류 떠서 주석-->
+<form id="joinform" action="insert_tc" enctype="multipart/form-data" method="POST" onsubmit="return joinformCheck();" >	<!-- enctype="multipart/form-data"  method옆에 적어야 함, 파일만 추가하면 오류 떠서 주석-->
 <table>
 	<tr>
 		<td>아이디</td>
@@ -114,6 +117,12 @@ table{margin: 0 auto;}
 	</tr>
 		
 	<!-- 사진등록 테이블  -->
+	<tr>
+		<td>사진 등록</td>
+		<td>
+			<input type="file" name="pic" id="tc_picname" size="30">
+		</td> <!-- name은 컨트롤러의 변수명과 같게 -->
+	</tr>
 		
 	<tr>
 		<td>이름</td>

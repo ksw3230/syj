@@ -48,26 +48,26 @@ public class JoinController {
 	public String insert_tc(
 			TeacherVO tc
 			, Model model
-			//, MultipartFile tc_picname
+			, MultipartFile pic
 			) {
 				//MultipartFile 객체를 통해 파일을 받음
 		
-	/*	
-		logger.debug("입력받은값: {}", tc);
-		logger.debug(tc_picname.getContentType());
-		logger.debug(tc_picname.getOriginalFilename());
-		logger.debug("" + tc_picname.getSize());
-		logger.debug("" + tc_picname.isEmpty());
+		logger.debug("파일: {}", pic);
 		
-		*/
-		/*
+		logger.debug(pic.getContentType());
+		logger.debug(pic.getOriginalFilename());
+		logger.debug("" + pic.getSize());
+		logger.debug("" + pic.isEmpty());
+		
+		
+		
 		//첨부파일이 있는 경우 지정된 경로에 저장하고, 원본 파일명과 저장된 파일명을 Board객체에 세팅
-		if (tc_picname != null && !tc_picname.isEmpty()) {	//파일이 존재하면 false
-			String savedfile = FileService.saveFile(tc_picname, uploadPath_tc);	//파일의 정보와 그 것을 savedfile에 카피함
-			tc.setTc_picname(tc_picname.getOriginalFilename());	// db정보에 담아서
+		if (pic != null && !pic.isEmpty()) {	//파일이 존재하면 false
+			String savedfile = FileService.saveFile(pic, uploadPath_tc);	//파일의 정보와 그 것을 savedfile에 카피함
+			tc.setTc_picname(pic.getOriginalFilename());	// db정보에 담아서
 			tc.setTc_savedpicid(savedfile);	//board에 저장
 		}
-		*/
+		
 		int cnt = dao.insert_tc(tc);
 		
 		if (cnt != 1) {
