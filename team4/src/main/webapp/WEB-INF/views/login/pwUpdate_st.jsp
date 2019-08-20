@@ -27,7 +27,7 @@ function pwcheck() {
 <body>
 <h1>[PASSWORD UPDATE]</h1>
 <form action="pwUpdate_st" method="post">
-<input type="hidden" name="st_id" value="${student.tc_id }">
+<input type="hidden" name="st_id" value="${student.st_id }">
 <table>
 	<tr>
 		<th>비밀번호</th>

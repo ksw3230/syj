@@ -215,7 +215,7 @@ main {
   	<li class="dropdown login">
 	    <a href="javascript:void(0)" class="dropbtn">로그아웃/마이페이지</a>
 	    <div class="dropdown-content">
-	      <a href="login/logout_tc">로그아웃</a>
+	      <a href="login/logout">로그아웃</a>
 	      <a href="">마이페이지</a>
 	    </div>
 	  </li>		

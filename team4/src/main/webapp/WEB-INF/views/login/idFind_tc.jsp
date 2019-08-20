@@ -34,7 +34,17 @@ function idFind() {
 		data: $('#info').serialize(),
 		dataType: 'text',
 		success: function(s) {
-			$('#FindId').html(s);
+			
+			var str = s + '<br>';
+				str += '<input type="hidden" name="tc_id" value="'+s+'">';
+				str += '<input type="submit" value="비밀번호 찾기">';
+			
+			
+			$('#FindId').html(str);
+			
+			
+			
+			
 		},
 		error:function(e){
 			alert('해당 정보와 관련된 아이디가 존재하지 않습니다.');
@@ -65,6 +75,7 @@ function idFind() {
 		<th><input type="button" id="idFind" value="아이디 찾기"></th>
 	</tr>
 </table>
+
 <div id="FindId"></div>
 </form>
 </body>
