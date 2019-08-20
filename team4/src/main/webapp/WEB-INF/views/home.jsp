@@ -53,6 +53,9 @@ li.dropdown {
 li.right {
 	margin-left: 60%;
 }
+li.login {
+	margin-left: 20%;
+}
 
 
 
@@ -112,19 +115,40 @@ main {
 
     <a href="lecture/insertClass" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의등록</a> 
 
-    <a href="#bb" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제등록</a> 
+    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제등록</a> 
 
-    <a href="#cc" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">작문답변</a> 
+    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">작문답변</a> 
 
-    <a href="#dd" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Q&A</a> 
+    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Q&A</a> 
 
-    <a href="#ee" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">학생관리</a> 
+    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">학생관리</a> 
 
-    <a href="#ff" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의관리</a>
+    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의관리</a>
 	
-	<a href="#gg" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">노트</a>
+	<a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">노트</a>
 	 
-	<a href="#hh" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">F&A</a>
+	<a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">F&A</a>
+  </div>
+</c:if>
+
+<c:if test="${loginId_st != null}">
+  <div class="w3-bar-block">
+
+    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">노트</a> 
+
+    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">내 강의실</a> 
+
+    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">단어장</a> 
+
+    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">발음교정</a> 
+
+    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">오답정리</a> 
+
+    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제</a>
+	
+	<a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의검색</a>
+	 
+	<a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">F&A</a>
   </div>
 </c:if>
 
@@ -176,11 +200,13 @@ main {
   <li><a href="">쿠폰</a></li>
   </c:if>
   
-  <c:if test="${sessionScope.admin_userid != null}">
-  	<li><a href="${path}/admin/manage_member">회원관리</a></li>
+  <c:if test="${loginId_tc != null}">
+  <li><a href="">장바구니</a></li>
+  <li><a href="">쿠폰</a></li>
   </c:if>
+  
 
-  <c:if test="${loginId_tc == null && loginId_st == null}">
+  <c:if test="${loginId_tc == null || loginId_st == null}">
 	  <li class="dropdown right">
 	    <a href="javascript:void(0)" class="dropbtn">로그인</a>
 	    <div class="dropdown-content">
@@ -196,8 +222,8 @@ main {
 	    </div>
 	  </li>
   </c:if>
-  <c:if test="${sessionScope.userid != null}">
-  	<li class="dropdown">
+  <c:if test="${loginId_tc != null || loginId_st != null}">
+  	<li class="dropdown login">
 	    <a href="javascript:void(0)" class="dropbtn">회원정보</a>
 	    <div class="dropdown-content">
   			<a href="">정보수정</a>
@@ -205,14 +231,7 @@ main {
   		</div>
   	</li>		
   </c:if>
-  <c:if test="${sessionScope.admin_userid != null}">
-  	<li class="dropdown right">
-	    <a href="javascript:void(0)" class="dropbtn">관리자모드</a>
-	    <div class="dropdown-content">
-  			<a href="${path}/admin/logout">로그아웃</a>
-  		</div>
-  	</li>		
-  </c:if>
+  
 </ul>
  <!--
   <div class="w3-bar w3-red w3-card w3-left-align w3-large">
