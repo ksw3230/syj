@@ -91,7 +91,7 @@ table{margin: 0 auto;}
 <body>
 <div>
 <h1>[ Sign up for a teacher ]</h1>
-<form id="joinform" action="insert_tc" method="POST" enctype="multipart/form-data" onsubmit="return joinformCheck();" >
+<form id="joinform" action="insert_tc" method="POST" onsubmit="return joinformCheck();" >	<!-- enctype="multipart/form-data"  method옆에 적어야 함, 파일만 추가하면 오류 떠서 주석-->
 <table>
 	<tr>
 		<td>아이디</td>
@@ -112,14 +112,9 @@ table{margin: 0 auto;}
 			<div id="pwCheck"></div>
 		</td>
 	</tr>
-	<tr>
-		<td>사진 등록</td>
-		<td><!-- 회원 사진 등록 -->
-			<input type="file" name="tc_picname" id="tc_picname" size="30">
-			<input type="button" value="+" onclick="addUpload()">
-			<p id = "add"></p>
-		</td><!-- name은 컨트롤러의 변수명과 같게 -->
-	</tr>
+		
+	<!-- 사진등록 테이블  -->
+		
 	<tr>
 		<td>이름</td>
 		<td>

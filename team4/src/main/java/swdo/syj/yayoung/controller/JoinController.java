@@ -1,7 +1,5 @@
 package swdo.syj.yayoung.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +48,8 @@ public class JoinController {
 	public String insert_tc(
 			TeacherVO tc
 			, Model model
-			, HttpSession session
-			, MultipartFile tc_picname) {
+			//, MultipartFile tc_picname
+			) {
 				//MultipartFile 객체를 통해 파일을 받음
 		
 	/*	
@@ -62,16 +60,14 @@ public class JoinController {
 		logger.debug("" + tc_picname.isEmpty());
 		
 		*/
-		
+		/*
 		//첨부파일이 있는 경우 지정된 경로에 저장하고, 원본 파일명과 저장된 파일명을 Board객체에 세팅
 		if (tc_picname != null && !tc_picname.isEmpty()) {	//파일이 존재하면 false
 			String savedfile = FileService.saveFile(tc_picname, uploadPath_tc);	//파일의 정보와 그 것을 savedfile에 카피함
 			tc.setTc_picname(tc_picname.getOriginalFilename());	// db정보에 담아서
 			tc.setTc_savedpicid(savedfile);	//board에 저장
 		}
-		
-		System.out.println(dao);
-		System.out.println(tc);
+		*/
 		int cnt = dao.insert_tc(tc);
 		
 		if (cnt != 1) {
