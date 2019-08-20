@@ -2,105 +2,32 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Tyxxpe" content="text/html; charset=UTF-8">
-<title>강의등록</title>
-<script src="../resources/js/jquery-3.4.1.js"></script>
-<script>
-$(function(){
-	$("#btnSave").click(function(){
-		var str="";
-		$("#uploadedList .file").each(function(i){
-			console.log(i);
-			str += "<input type='hidden' name='files["+i+"]' value='" + $(this).val()+"'>";
-		});
-		$("#form1").append(str);
-		document.form1.submit();
-	});
-	$(".fileDrop").on("dragenter dragover",function(e){
-		e.preventDefault();
-	});
-	$(".fileDrop").on("drop",function(e){
-		e.preventDefault();
-		var files=e.originalEvent.dataTransfer.files;
-		var file=files[0];
-		var formData=new FormData();
-		formData.append("file",file);
-		$.ajax({
-			url: "${path}/fboard/uploadFile",
-			data: formData,
-			dataType: "text",
-			processData: false,
-			contentType: false,
-			type: "post",
-			success: function(data){
-				var fileInfo=getFileInfo(data);
-				var html="<a href='"+fileInfo.getLink+"'>"+	fileInfo.fileName+"</a><br>";
-				html += "<input type='hidden' class='file' value='" + fileInfo.fullName + "'>";
-				$("#uploadedList").append(html);
-			}
-		});
-	});
-});
-</script>
-
-<style>
-.fileDrop {
-                border: 2px dashed #92AAB0;
-                width: 600px;
-                height: 150px;
-                color: #92AAB0;
-                text-align: center;
-                vertical-align: middle;
-                padding: 10px 0px 10px 10px;
-                font-size:200%;
-                display: table-cell;
+ <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>다중 파일 업로드</title>
+        <script src="../resources/js/jquery-3.4.1.js"></script>
+        <script>
+        $(document).ready(function(){
+        	
+        });
+            // 라인을 늘일 변수
+        var uf = '';
+            // sw_file_add_form div에 input 태그를 추가하는 함수
+            function sw_file_add(size, ext) {
+                // 최초 sw_file_add_form에 추가하고 다음부터는 sw_file_add_form1, 2, 3, 4, ... 로 계속 추가가 된다.
+                // 물론 그에 맞는 div도 계속 생성한다. 차후에 추가한 div를 제거하는 것도 필요하다.
+                eval('sw_file_add_form' + uf).innerHTML += "<input type=file name=file[] size='" + size + "' " + ext + "><div id='sw_file_add_form" + (uf+1) + "'></div>";
+                uf++;
             }
-</style>
-
-</head>
-<body>
-<form id="form1" name="form1" method="post" action="${path}/fboard/insertOK">
-
-<table align="center" width="600px">
-<tr>
-	<th><h2>글쓰기</h2></th>
-</tr>
-<tr>	
-	<td>제목<input name="title" id="title" size="80" placeholder="제목을 입력하세요"></td>
-</tr>
-<tr>
-	<td>내용 
-		<textarea id="content" name="content"></textarea>
-		<script>
-		$(function() {
-			//id가 memo인 태그를 summernote로 변경
-			$("#content").summernote({
-				height : 150,
-				width : 600
-			});
-		});
-		</script>
-	</td>	
-</tr>
-<tr>
-	<td>
-		첨부파일 등록
-		<div class="fileDrop">Drag & Drop Files Here</div>
-		<div id="uploadedList"></div>
-	</td>
-</tr>
-<tr>
-	<td align="right">
-		<button type="button" id="btnSave">확인</button>
-		<input type="button" value="돌아가기" onclick="history.go(-1)"/>
-	</td>
-</tr>
-	
-</tr>
-</table>
-</form>
-
-
-</body>
+        </script>
+    </head>
+ 
+    <body>
+        <form name="sw_write_form" method="post" enctype="multipart/form-data" action="">
+        <input type="file" name="file[]" size="50" class="input_write" /> 
+        <!-- 여기에 추가가 된다. -->
+        <div id="sw_file_add_form"></div>
+        <a href="javascript:sw_file_add(50, 'class=input_write');">파일 추가</a>
+        </form>
+    </body>
 </html>

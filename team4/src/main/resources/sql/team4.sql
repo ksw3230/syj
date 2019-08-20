@@ -275,7 +275,7 @@ CREATE TABLE student
 	-- 레벨
 	st_level varchar2(5) NOT NULL,
 	-- 사진이름
-	st_picname varchar2(50),
+	st_picname varchar2(30),
 	-- 저장되는 사진의 이름
 	st_savedpicname varchar2(30),
 	PRIMARY KEY (st_id)
@@ -299,9 +299,9 @@ CREATE TABLE teacher
 	-- 이메일
 	tc_email varchar2(30) NOT NULL,
 	-- 사진이름
-	tc_picname varchar2(50),
+	tc_picname varchar2(30),
 	-- 저장된 사진 이름
-	tc_savedpicid varchar2(30) NOT NULL,
+	tc_savedpicid varchar2(30),
 	-- 권한 승인 여부
 	tc_check varchar2(1) default 'n',
 	PRIMARY KEY (tc_id)
