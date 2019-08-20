@@ -77,7 +77,7 @@ public class LoginController {
 	 * 선생님 아이디 찾기
 	 * */
 	@ResponseBody
-	@RequestMapping(value="idFind_tc", method=RequestMethod.POST)
+	@RequestMapping(value="idFind_tc", method=RequestMethod.POST, produces="application/json;charset/UTF-8")
 	public String idFind_tc(TeacherVO vo){
 		TeacherVO find = dao.findId(vo);
 		String FindId = find.getTc_id();
@@ -85,11 +85,50 @@ public class LoginController {
 	}
 	
 	/*
-	 * 선생님 비밀번호 찾기 폼
+	 * 아이디를 찾은 후 선생님 비밀번호 찾기 폼
+	 * vo를 모델 담기(아이디, 이름, 생년월일, 이메일) 
 	 * */
-	@RequestMapping(value="pwFind_tc", method=RequestMethod.GET)
-	public String pwFind_tc(){		
+	@RequestMapping(value="pwFindForm_tc", method=RequestMethod.POST)
+	public String pwFindForm_tc(TeacherVO vo, Model model){
+		model.addAttribute("teacher", vo);
+		logger.debug(vo.toString());
 		return "login/pwFind_tc";
+	}
+	
+	/*
+	 * 바로 비밀번호 찾기 클릭 시 선생님 비밀번호 찾기 폼
+	 * */
+	@RequestMapping(value="pwFindForm_tc", method=RequestMethod.GET)
+	public String pwFindForm_tc(){
+		return "login/pwFind_tc";
+	}
+	
+	/*
+	 * 선생님 비밀번호 찾기
+	 * */
+	@RequestMapping(value="pwFind_tc", method=RequestMethod.POST)
+	public String pwFind_tc(TeacherVO vo, Model model){
+		String findPw = dao.findPw(vo);
+		if (findPw != null) {
+			/*	비밀번호 수정 폼으로 이동*/
+			model.addAttribute("teacher", vo);
+			return "login/pwUpdate_tc";			
+		}
+		model.addAttribute("msg", "해당 정보에 일치하는 비밀번호가 존재하지 않습니다.");
+		return "login/pwFind_tc";
+	}
+	
+	/*
+	 * 선생님 비밀번호 수정
+	 * */
+	@RequestMapping(value="pwUpdate_tc", method=RequestMethod.POST)
+	public String pwUpdate_tc(String tc_pw, String tc_id, Model model){
+		int cnt = dao.UpdatePw(tc_pw, tc_id);
+		if (cnt != 0) {
+			model.addAttribute("close", "close");
+			return "login/login_tc";
+		}
+		return "login/pwUpdate_tc";
 	}
 	
 	/* 

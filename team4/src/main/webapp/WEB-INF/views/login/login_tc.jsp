@@ -40,6 +40,10 @@ function toPw(){
     var option = "width = 500, height = 500, top = 100, left = 200, location = no"
     window.open(url, name, option);
 }
+if (${close != null}) {
+	alert('비밀번호 변경 성공');
+	self.close();
+}
 </script>
 </head>
 <body>

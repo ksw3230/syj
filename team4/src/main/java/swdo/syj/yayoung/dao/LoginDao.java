@@ -21,9 +21,31 @@ public class LoginDao {
 		return vo;
 	}
 
+	/*
+	 * 선생님 아이디 찾기
+	 * */
 	public TeacherVO findId(TeacherVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		LoginMapper mapper = session.getMapper(LoginMapper.class);
+		TeacherVO find = mapper.findId(vo);
+		return find;
+	}
+
+	/*
+	 * 선생님 아이디 찾기
+	 * */
+	public String findPw(TeacherVO vo) {
+		LoginMapper mapper = session.getMapper(LoginMapper.class);
+		String findPw = mapper.findPw(vo);
+		return findPw;
+	}
+
+	/*
+	 * 선생님 비번 찾기 후 수정
+	 * */
+	public int UpdatePw(String tc_pw, String tc_id) {
+		LoginMapper mapper = session.getMapper(LoginMapper.class);
+		int cnt = mapper.UpdatePw(tc_pw, tc_id);
+		return cnt;
 	}
 
 }
