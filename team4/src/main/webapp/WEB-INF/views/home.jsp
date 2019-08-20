@@ -26,7 +26,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: yellow;
+    background-color: #ffd11a;
 }
 
 
@@ -53,9 +53,15 @@ li.dropdown {
 li.right {
 	margin-left: 60%;
 }
+
 li.login {
-	margin-left: 20%;
+	margin-left: 55%;
 }
+
+li.login2 {
+	margin-left: 47%;
+}
+
 
 
 
@@ -201,12 +207,31 @@ main {
   </c:if>
   
   <c:if test="${loginId_tc != null}">
-  <li><a href="">장바구니</a></li>
-  <li><a href="">쿠폰</a></li>
+  <li><a href=""></a></li>
+  <li><a href=""></a></li>
   </c:if>
   
+  <c:if test="${loginId_tc != null && loginId_st == null}">
+  	<li class="dropdown login">
+	    <a href="javascript:void(0)" class="dropbtn">로그아웃/마이페이지</a>
+	    <div class="dropdown-content">
+	      <a href="login/logout_tc">로그아웃</a>
+	      <a href="">마이페이지</a>
+	    </div>
+	  </li>		
+  </c:if>
 
-  <c:if test="${loginId_tc == null || loginId_st == null}">
+  <c:if test="${loginId_tc == null && loginId_st != null}">
+  	<li class="dropdown login2">
+	    <a href="javascript:void(0)" class="dropbtn">로그아웃/정보수정</a>
+	    <div class="dropdown-content">
+	      <a href="login/logout_tc">로그아웃</a>
+	      <a href="">정보수정</a>
+	    </div>
+	  </li>		
+  </c:if>
+  
+  <c:if test="${loginId_tc == null && loginId_st == null}">
 	  <li class="dropdown right">
 	    <a href="javascript:void(0)" class="dropbtn">로그인</a>
 	    <div class="dropdown-content">
@@ -222,15 +247,7 @@ main {
 	    </div>
 	  </li>
   </c:if>
-  <c:if test="${loginId_tc != null || loginId_st != null}">
-  	<li class="dropdown login">
-	    <a href="javascript:void(0)" class="dropbtn">회원정보</a>
-	    <div class="dropdown-content">
-  			<a href="">정보수정</a>
-  			<a href="">로그아웃</a>
-  		</div>
-  	</li>		
-  </c:if>
+  
   
 </ul>
  <!--
