@@ -8,7 +8,7 @@ public class Ins_classVO {
 	private String ins_date;
 	private String ins_cate;
 	private String ins_vidlist;
-	private int price;
+	private int ins_price;
 	private String ins_thumbnail;
 	private String ins_thumbnailsave;
 	private String tc_id;
@@ -17,7 +17,7 @@ public class Ins_classVO {
 	}
 
 	public Ins_classVO(int ins_num, String ins_title, String ins_des, String ins_date, String ins_cate,
-			String ins_vidlist, int price, String ins_thumbnail, String ins_thumbnailsave, String tc_id) {
+			String ins_vidlist, int ins_price, String ins_thumbnail, String ins_thumbnailsave, String tc_id) {
 		super();
 		this.ins_num = ins_num;
 		this.ins_title = ins_title;
@@ -25,7 +25,7 @@ public class Ins_classVO {
 		this.ins_date = ins_date;
 		this.ins_cate = ins_cate;
 		this.ins_vidlist = ins_vidlist;
-		this.price = price;
+		this.ins_price = ins_price;
 		this.ins_thumbnail = ins_thumbnail;
 		this.ins_thumbnailsave = ins_thumbnailsave;
 		this.tc_id = tc_id;
@@ -79,12 +79,12 @@ public class Ins_classVO {
 		this.ins_vidlist = ins_vidlist;
 	}
 
-	public int getPrice() {
-		return price;
+	public int getIns_price() {
+		return ins_price;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setIns_price(int ins_price) {
+		this.ins_price = ins_price;
 	}
 
 	public String getIns_thumbnail() {
@@ -114,11 +114,11 @@ public class Ins_classVO {
 	@Override
 	public String toString() {
 		return "Ins_classVO [ins_num=" + ins_num + ", ins_title=" + ins_title + ", ins_des=" + ins_des + ", ins_date="
-				+ ins_date + ", ins_cate=" + ins_cate + ", ins_vidlist=" + ins_vidlist + ", price=" + price
+				+ ins_date + ", ins_cate=" + ins_cate + ", ins_vidlist=" + ins_vidlist + ", ins_price=" + ins_price
 				+ ", ins_thumbnail=" + ins_thumbnail + ", ins_thumbnailsave=" + ins_thumbnailsave + ", tc_id=" + tc_id
 				+ "]";
 	}
 	
 	
-
+	
 }

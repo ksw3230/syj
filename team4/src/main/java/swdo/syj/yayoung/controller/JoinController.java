@@ -82,7 +82,7 @@ public class JoinController {
 		model.addAttribute("msg", "글을 저장했습니다.");
 		
 		return "redirect:/";
-//		return "redirect:/boardlist";
+			//return "redirect:/boardlist";
 			//는  www.naver/board/boardlist가 아니라 www.naver/boardlist로 감
 	}	
 	

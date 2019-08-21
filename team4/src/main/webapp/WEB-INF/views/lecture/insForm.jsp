@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
- <title>다중 파일 업로드</title>
+ <title>강의등록</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -55,13 +55,12 @@ li.right {
 }
 
 li.login {
-	margin-left: 55%;
+	margin-left: 52%;
 }
 
 li.login2 {
-	margin-left: 47%;
+	margin-left: 45%;
 }
-
 
 
 
@@ -102,20 +101,30 @@ main {
 }
 
 </style>
+<script src="../resources/js/jquery-3.4.1.js"></script>
 <script>
-        $(document).ready(function(){
-        	
-        });
-            // 라인을 늘일 변수
-        var uf = '';
-            // sw_file_add_form div에 input 태그를 추가하는 함수
-            function sw_file_add(size, ext) {
-                // 최초 sw_file_add_form에 추가하고 다음부터는 sw_file_add_form1, 2, 3, 4, ... 로 계속 추가가 된다.
-                // 물론 그에 맞는 div도 계속 생성한다. 차후에 추가한 div를 제거하는 것도 필요하다.
-                eval('sw_file_add_form' + uf).innerHTML += "<input type=file name=file[] size='" + size + "' " + ext + "><div id='sw_file_add_form" + (uf+1) + "'></div>";
-                uf++;
-            }
-        </script>
+       $(document).ready(function(){
+    	   
+    	   $('#insbutton').on('click', gotoins)
+    	   $('#godetail').on('click', godetail)
+    	   
+       })
+    	
+       function gotoins(){
+      		var url = "insertForm";
+    	   var name = "insert";
+    	   var option = "width = 500, height = 500, top = 50, left = 200, location = no"
+    	   window.open(url, name, option);
+    	}
+       
+       function godetail(){
+    	   var url = "insertForm";
+    	   var name = "detail";
+    	   var option = "width = 500, height = 500, top = 50, left = 200, location = no"
+    	   window.open(url, name, option);
+       }
+       
+       </script>
 <body>
 
 <!-- Sidebar/menu -->
@@ -201,13 +210,28 @@ main {
   <!-- Header -->
 
   <div class="w3-container" style="margin-top:80px" id="showcase">
-
-   <form name="sw_write_form" method="post" enctype="multipart/form-data" action="">
-        <input type="file" name="file[]" size="50" class="input_write" /> 
-        <!-- 여기에 추가가 된다. -->
-        <div id="sw_file_add_form"></div>
-        <a href="javascript:sw_file_add(50, 'class=input_write');">파일 추가</a>
-        </form>
+  <c:if test="${loginId_tc != null }">
+  	${loginId_tc}님의 강의 목록
+  </c:if>
+  	<table width="500">
+  		<tr>
+  			<th>썸네일</th>
+  			<th>강의 제목</th>
+  			<th>카테고리</th>
+  			<th>강의 등록일</th>
+  			<th>가격</th>
+  		</tr>
+  		<c:forEach var="list" items="${insList}">
+  		<tr>
+  			<td>${list.ins_thumbnail}</td>
+  			<td><a id="godetail">${list.ins_title}</a></td>
+  			<td>${list.ins_cate}</td>
+  			<td>${list.ins_date}</td>
+  			<td>${list.ins_price}</td>
+  		</tr>
+  		</c:forEach>
+  	</table>
+ 	<br><input type="button" value="강의등록하기" id="insbutton">
     
   </div>
 
@@ -215,7 +239,7 @@ main {
 <!-- Navbar -->
 <div class="w3-top">
  <ul>
-  <li><a href=".">YaYoung</a></li>
+  <li><a href="../">YaYoung</a></li>
   
   <c:if test="${loginId_st != null}">
   <li><a href="">장바구니</a></li>
@@ -228,23 +252,17 @@ main {
   </c:if>
   
   <c:if test="${loginId_tc != null && loginId_st == null}">
-  	<li class="dropdown login">
-	    <a href="javascript:void(0)" class="dropbtn">로그아웃/마이페이지</a>
-	    <div class="dropdown-content">
-	      <a href="login/logout_tc">로그아웃</a>
-	      <a href="">마이페이지</a>
-	    </div>
-	  </li>		
+  	<li class="login">
+	      <a href="login/logout">로그아웃</a>
+	      <a href="">정보수정</a>
+	 </li>		
   </c:if>
 
   <c:if test="${loginId_tc == null && loginId_st != null}">
   	<li class="dropdown login2">
-	    <a href="javascript:void(0)" class="dropbtn">로그아웃/정보수정</a>
-	    <div class="dropdown-content">
-	      <a href="login/logout_tc">로그아웃</a>
-	      <a href="">정보수정</a>
-	    </div>
-	  </li>		
+	     <a href="login/logout">로그아웃</a>
+         <a href="">마이페이지</a>
+    </li>		
   </c:if>
   
   <c:if test="${loginId_tc == null && loginId_st == null}">

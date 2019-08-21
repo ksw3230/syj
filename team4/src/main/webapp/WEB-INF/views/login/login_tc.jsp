@@ -68,6 +68,6 @@ if (${close != null}) {
 	</tr>
 </table>
 </form>
-${msg }	
+${msg}	
 </body>
 </html>

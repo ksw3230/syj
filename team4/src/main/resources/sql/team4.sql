@@ -263,7 +263,6 @@ CREATE TABLE student
 	-- 학생아이디
 	st_id varchar2(20) NOT NULL,
 	-- 비밀번호
-	-- 
 	st_pw varchar2(20) NOT NULL,
 	-- 이름
 	st_name varchar2(20) NOT NULL,
@@ -286,7 +285,6 @@ CREATE TABLE student
 CREATE TABLE teacher
 (
 	-- 선생님 아이디
-	-- 
 	tc_id varchar2(20) NOT NULL,
 	-- 비밀번호
 	tc_pw varchar2(20) NOT NULL,
@@ -295,7 +293,6 @@ CREATE TABLE teacher
 	-- 생년월일
 	tc_dob varchar2(20) NOT NULL,
 	-- 전화번호
-	-- 
 	tc_phone varchar2(20) NOT NULL,
 	-- 이메일
 	tc_email varchar2(30) NOT NULL,
