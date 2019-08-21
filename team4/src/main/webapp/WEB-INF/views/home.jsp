@@ -55,11 +55,11 @@ li.right {
 }
 
 li.login {
-	margin-left: 55%;
+	margin-left: 52%;
 }
 
 li.login2 {
-	margin-left: 47%;
+	margin-left: 45%;
 }
 
 
@@ -199,7 +199,7 @@ main {
 <!-- Navbar -->
 <div class="w3-top">
  <ul>
-  <li><a href=".">YaYoung</a></li>
+  <li><a href="./">YaYoung</a></li>
   
   <c:if test="${loginId_st != null}">
   <li><a href="">장바구니</a></li>
@@ -212,23 +212,17 @@ main {
   </c:if>
   
   <c:if test="${loginId_tc != null && loginId_st == null}">
-  	<li class="dropdown login">
-	    <a href="javascript:void(0)" class="dropbtn">로그아웃/마이페이지</a>
-	    <div class="dropdown-content">
+  	<li class="login">
 	      <a href="login/logout">로그아웃</a>
-	      <a href="">마이페이지</a>
-	    </div>
-	  </li>		
+	      <a href="">정보수정</a>
+	 </li>		
   </c:if>
 
   <c:if test="${loginId_tc == null && loginId_st != null}">
   	<li class="dropdown login2">
-	    <a href="javascript:void(0)" class="dropbtn">로그아웃/정보수정</a>
-	    <div class="dropdown-content">
-	      <a href="login/logout">로그아웃</a>
-	      <a href="">정보수정</a>
-	    </div>
-	  </li>		
+	     <a href="login/logout">로그아웃</a>
+         <a href="">마이페이지</a>
+    </li>		
   </c:if>
   
   <c:if test="${loginId_tc == null && loginId_st == null}">

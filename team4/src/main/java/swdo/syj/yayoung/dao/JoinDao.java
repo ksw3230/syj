@@ -56,5 +56,9 @@ public class JoinDao {
 		String re = mapper.serchIdSt(checkId);
 		return re;
 	}
+	
+	/*
+	 * 
+	 * */
 
 }
