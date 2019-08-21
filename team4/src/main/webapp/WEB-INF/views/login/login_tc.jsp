@@ -35,7 +35,7 @@ function toId(){
 }
 
 function toPw(){
-	var url = "../login/pwFind_tc";
+	var url = "../login/pwFindForm_tc";
     var name = "pwFind";
     var option = "width = 500, height = 500, top = 100, left = 200, location = no"
     window.open(url, name, option);
@@ -68,6 +68,6 @@ if (${close != null}) {
 	</tr>
 </table>
 </form>
-${msg }	
+${msg}	
 </body>
 </html>

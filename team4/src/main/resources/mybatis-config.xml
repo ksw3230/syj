@@ -6,11 +6,16 @@
 	<typeAliases>
 		<typeAlias type="swdo.syj.yayoung.vo.StudentVO" alias="Student" />
 		<typeAlias type="swdo.syj.yayoung.vo.TeacherVO" alias="Teacher" />
+		<typeAlias type="swdo.syj.yayoung.vo.IndexCardVO" alias="Index" />
+		<typeAlias type="swdo.syj.yayoung.vo.WordCardVO" alias="Word" />
+		<typeAlias type="swdo.syj.yayoung.vo.Ins_classVO" alias="InsClass" />
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="loginMapper.xml"/>
 		<mapper resource="JoinMapper.xml"/>
+		<mapper resource="VocaMapper.xml"/>
+		<mapper resource="lectureMapper.xml"/>
 	</mappers>
 	
 </configuration>

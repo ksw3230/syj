@@ -1,4 +1,3 @@
-
 /* Drop Tables */
 
 DROP TABLE basket CASCADE CONSTRAINTS;
@@ -81,16 +80,6 @@ CREATE TABLE homework_w
 	-- 강의 비디오 번호
 	vid_num number NOT NULL,
 	PRIMARY KEY (hww_num)
-);
-
-
-CREATE TABLE Indexcard
-(
-	-- 단어세트 번호
-	card_set_num number NOT NULL,
-	-- 학생아이디
-	st_id varchar2(20) NOT NULL,
-	PRIMARY KEY (card_set_num)
 );
 
 CREATE TABLE ins_class
@@ -263,13 +252,13 @@ CREATE TABLE student
 	-- 학생아이디
 	st_id varchar2(20) NOT NULL,
 	-- 비밀번호
-	-- 
 	st_pw varchar2(20) NOT NULL,
 	-- 이름
 	st_name varchar2(20) NOT NULL,
 	-- 생년월일
-	-- 
 	st_dob varchar2(20) NOT NULL,
+	-- 전화번호
+	st_phone varchar2(20) NOT NULL,
 	-- 이메일
 	st_email varchar2(30) NOT NULL,
 	-- 레벨
@@ -285,7 +274,6 @@ CREATE TABLE student
 CREATE TABLE teacher
 (
 	-- 선생님 아이디
-	-- 
 	tc_id varchar2(20) NOT NULL,
 	-- 비밀번호
 	tc_pw varchar2(20) NOT NULL,
@@ -294,7 +282,6 @@ CREATE TABLE teacher
 	-- 생년월일
 	tc_dob varchar2(20) NOT NULL,
 	-- 전화번호
-	-- 
 	tc_phone varchar2(20) NOT NULL,
 	-- 이메일
 	tc_email varchar2(30) NOT NULL,
@@ -307,17 +294,6 @@ CREATE TABLE teacher
 	PRIMARY KEY (tc_id)
 );
 
-
-CREATE TABLE word_card
-(
-	-- 단어 번호
-	word_num number NOT NULL,
-	-- 단어세트 번호
-	card_set_num number NOT NULL,
-	PRIMARY KEY (word_num)
-);
-
-
 CREATE TABLE wrong_answer
 (
 	-- 오답번호
@@ -327,7 +303,29 @@ CREATE TABLE wrong_answer
 	PRIMARY KEY (wrong_ans_num)
 );
 
+CREATE TABLE Indexcard(
+	-- 단어세트 번호
+	card_set_num number PRIMARY KEY,
+	-- 학생아이디
+	st_id varchar2(20) NOT NULL,
+	--외래키
+	CONSTRAINT id_fk foreign key(st_id) references student(st_id) on delete cascade
+);
 
+CREATE TABLE word_card(
+	-- 단어 번호
+	word_num number PRIMARY KEY,
+	-- 단어세트 번호
+	card_set_num number NOT NULL,
+	-- 영어
+	english varchar2(30) not null,
+	-- 한글
+	korean varchar2(30) not null, 
+	-- 진도율
+	percent number default 0,
+    -- 외래키
+    CONSTRAINT num_fk foreign key(card_set_num) references Indexcard(card_set_num) on delete cascade
+);
 
 /* Create Foreign Keys */
 
@@ -562,6 +560,8 @@ COMMENT ON COLUMN word_card.word_num IS '단어 번호';
 COMMENT ON COLUMN word_card.card_set_num IS '단어세트 번호';
 COMMENT ON COLUMN wrong_answer.wrong_ans_num IS '오답번호';
 COMMENT ON COLUMN wrong_answer.hwm_num IS '객관식 숙제 등록';
+
+
 
 
 

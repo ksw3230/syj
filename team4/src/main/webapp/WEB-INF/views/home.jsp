@@ -55,11 +55,11 @@ li.right {
 }
 
 li.login {
-	margin-left: 55%;
+	margin-left: 52%;
 }
 
 li.login2 {
-	margin-left: 47%;
+	margin-left: 45%;
 }
 
 
@@ -144,7 +144,7 @@ main {
 
     <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">내 강의실</a> 
 
-    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">단어장</a> 
+    <a href="voca/voca_home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">단어장</a> 
 
     <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">발음교정</a> 
 
@@ -212,23 +212,17 @@ main {
   </c:if>
   
   <c:if test="${loginId_tc != null && loginId_st == null}">
-  	<li class="dropdown login">
-	    <a href="javascript:void(0)" class="dropbtn">로그아웃/마이페이지</a>
-	    <div class="dropdown-content">
-	      <a href="login/logout_tc">로그아웃</a>
-	      <a href="">마이페이지</a>
-	    </div>
-	  </li>		
+  	<li class="login">
+	      <a href="login/logout">로그아웃</a>
+	      <a href="">정보수정</a>
+	 </li>		
   </c:if>
 
   <c:if test="${loginId_tc == null && loginId_st != null}">
   	<li class="dropdown login2">
-	    <a href="javascript:void(0)" class="dropbtn">로그아웃/정보수정</a>
-	    <div class="dropdown-content">
-	      <a href="login/logout">로그아웃</a>
-	      <a href="">정보수정</a>
-	    </div>
-	  </li>		
+	     <a href="login/logout">로그아웃</a>
+         <a href="">마이페이지</a>
+    </li>		
   </c:if>
   
   <c:if test="${loginId_tc == null && loginId_st == null}">
