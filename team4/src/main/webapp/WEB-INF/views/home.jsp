@@ -199,7 +199,7 @@ main {
 <!-- Navbar -->
 <div class="w3-top">
  <ul>
-  <li><a href=".">YaYoung</a></li>
+  <li><a href="./">YaYoung</a></li>
   
   <c:if test="${loginId_st != null}">
   <li><a href="">장바구니</a></li>

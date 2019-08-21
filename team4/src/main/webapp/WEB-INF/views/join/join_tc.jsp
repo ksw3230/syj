@@ -28,9 +28,9 @@ $(document).ready(function(){
 		
 		
 		$.ajax({
-			url: 'idCheck',
+			url: 'idCheckTc',
 			type: 'post',
-			data: {checkID:checkID},
+			data: {checkId:checkId},
 			dataType: 'text',
 			success: function(s){
 				$('#idCheck').html(s);
@@ -99,13 +99,15 @@ table{margin: 0 auto;}
 	<tr>
 		<td>아이디</td>
 		<td>
-			<input type="text" name="tc_id" id="tc_id" size="30"><span id="idCheck"></span>
+			<input type="text" name="tc_id" id="tc_id" size="30">
+			<div id="idCheck"></div>
 		</td>
 	</tr>
 	<tr>
 		<td>비밀번호</td>
 		<td>
-			<input type="password" name="tc_pw" id="tc_pw" size="30"><span id="pwLength"></span>
+			<input type="password" name="tc_pw" id="tc_pw" size="30">
+			<div id="pwLength"></div>
 		</td>
 	</tr>
 	<tr>

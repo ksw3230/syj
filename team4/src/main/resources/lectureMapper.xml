@@ -5,6 +5,28 @@
 
 <!-- 회원정보 처리 SQL -->
 <mapper namespace="swdo.syj.yayoung.dao.LectureMapper">
-
+	<insert id="insertins" parameterType="InsClass">
+		insert into ins_class(ins_num, ins_title, ins_des, ins_cate, ins_price, tc_id)
+			values(ins_class_seq.nextval, #{ins_title}, #{ins_des}, #{ins_cate}, #{ins_price}, #{tc_id})
+	</insert>
+	
+	<select id="getInsList" resultType="InsClass" parameterType="string">
+		select 
+			ins_num, 
+			ins_title, 
+			ins_des,
+			to_char(ins_date, 'YYYY-MM-DD') ins_date,
+			ins_cate,
+			ins_vidlist,
+			ins_price,
+			ins_thumbnail,
+			ins_thumbnailsave,
+			tc_id 
+		from 
+			ins_class 
+		where
+			 tc_id = #{tc_id} 
+		order by ins_num desc
+	</select>
 	
 </mapper>
