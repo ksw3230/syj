@@ -11,4 +11,21 @@
 		insert into teacher(tc_id, tc_pw, tc_name, tc_dob, tc_phone, tc_email, tc_picname, tc_savedpicid) 
 			values(#{tc_id}, #{tc_pw}, #{tc_name}, #{tc_dob}, #{tc_phone}, #{tc_email}, #{tc_picname}, #{tc_savedpicid})
 	</insert>
+	
+	<!-- 학생 가입하기 -->
+	<insert id="insert_st" parameterType="Student">
+		insert into student(st_id, st_pw, st_name, st_dob, st_phone, st_email, st_level, st_picname, st_savedpicname)
+			values(#{st_id}, #{st_pw}, #{st_name}, #{st_dob}, #{st_phone}, #{st_email}, #{st_level}, #{st_picname}, #{st_savedpicname})
+	</insert>
+	
+	<!-- 선생님 아이디 중복 확인 -->
+	<select id="serchIdTc" parameterType="string" resultType="string">
+		select tc_id from teacher where tc_id=#{tc_id}
+	</select>
+	
+	<!-- 학생 아아디 중복 확인 -->
+	<!-- 선생님 아이디 중복 확인 -->
+	<select id="serchIdSt" parameterType="string" resultType="string">
+		select st_id from student where st_id=#{st_id}
+	</select>
 </mapper>
