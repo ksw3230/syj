@@ -24,8 +24,54 @@
 	</select>
 	
 	<!-- 학생 아아디 중복 확인 -->
-	<!-- 선생님 아이디 중복 확인 -->
 	<select id="serchIdSt" parameterType="string" resultType="string">
 		select st_id from student where st_id=#{st_id}
 	</select>
+	
+	<!-- 선생님 정보 불러오기 -->
+	<select id="getTeacher" parameterType="string" resultType="Teacher">
+		select * from teacher where tc_id=#{tc_id}
+	</select>
+	
+	<!-- 선생님 정보 수정 저장 -->
+	<update id="update_tc" parameterType="Teacher">
+		update teacher
+		set tc_pw=#{tc_pw}, tc_name=#{tc_name}, tc_phone=#{tc_phone}, tc_email=#{tc_email}
+		<if test="tc_savedpicid != null">
+		,tc_picname=#{tc_picname}, tc_savedpicid=#{tc_savedpicid}
+		</if>
+		where tc_id=#{tc_id}
+	</update>
+	
+	<!-- 선생님 정보 수정 사진 삭제 -->
+	<update id="deletefileTcPic" parameterType="Teacher">
+		update teacher
+		set tc_picname = null, tc_savedpicid = null
+		where tc_id=#{tc_id} and tc_savedpicid=#{tc_savedpicid}
+	</update>
+	
+	<!-- 학생 개인정보 불러오기 -->
+	<select id="getStudent" parameterType="string" resultType="Student">
+		select * from student where st_id=#{st_id}
+	</select>
+	
+	<!-- 학생 개인정보 수정 -->
+	<update id="update_st" parameterType="Student">
+		update student
+		set st_pw=#{st_pw}, st_name=#{st_name}, st_phone=#{st_phone}, st_email=#{st_email}
+		<if test="st_level != null">
+		, st_level=#{st_level}
+		</if>
+		<if test="st_savedpicname != null">
+		, st_picname=#{st_picname}, st_savedpicname=#{st_savedpicname}
+		</if>
+		where st_id=#{st_id}
+	</update>
+	
+	<!-- 학생 정보 수정 사진 삭제 -->
+	<update id="deletefileStPic" parameterType="Student">
+		update student
+		set st_picname = null, st_savedpicname = null
+		where st_id=#{st_id} and st_savedpicname=#{st_savedpicname}
+	</update>
 </mapper>

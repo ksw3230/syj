@@ -13,6 +13,6 @@
 <title>마이페이지</title>
 </head>
 <body>
-<p><a href=""></a></p>
+<p><a href="../join/infoUpFormSt">개인 정보 수정</a></p>
 </body>
 </html>
