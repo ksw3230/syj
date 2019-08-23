@@ -56,9 +56,68 @@ public class JoinDao {
 		String re = mapper.serchIdSt(checkId);
 		return re;
 	}
-	
+
 	/*
-	 * 
+	 * 선생님 정보 불러오기
 	 * */
+	public TeacherVO getTeacher(String tc_id) {
+		JoinMapper mapper = session.getMapper(JoinMapper.class);
+		TeacherVO getTc = mapper.getTeacher(tc_id);
+		return getTc;
+	}
+
+	/*
+	 * 선생님 개인 정보 수정 저장
+	 * */
+	public int update_tc(TeacherVO tc) {
+		JoinMapper mapper = session.getMapper(JoinMapper.class);
+		logger.debug("선생님 객체{}", tc);
+		int re = mapper.update_tc(tc);
+		logger.debug("선생님 결과 {}", re);
+		return re;
+	}
+
+	/*
+	 * 선생님 개인정보 사진 삭제
+	 * */
+	public int deletefileTcPic(TeacherVO tc) {
+		JoinMapper mapper = session.getMapper(JoinMapper.class);
+		logger.debug("선생님 {}", tc);
+		int re = mapper.deletefileTcPic(tc);
+		logger.debug("선생님 결과{}", re);
+		return re;
+	}
+
+	/*
+	 * 학생 개인정보 불러오기
+	 * */
+	public StudentVO getStudent(String st_id) {
+		JoinMapper mapper = session.getMapper(JoinMapper.class);
+		StudentVO getSt = mapper.getStudent(st_id);
+		return getSt;
+	}
+
+	/*
+	 * 학생 개인 정보 수정 저장
+	 * */
+	public int update_st(StudentVO st) {
+		JoinMapper mapper = session.getMapper(JoinMapper.class);
+		logger.debug("학생 객체{}", st);
+		int re = mapper.update_st(st);
+		logger.debug("학생 결과 {}", re);
+		return re;
+	}
+
+	/*
+	 * 학생 개인정보 사진 삭제
+	 * */
+	public int deletefileStPic(StudentVO st) {
+		JoinMapper mapper = session.getMapper(JoinMapper.class);
+		logger.debug("학생 {}", st);
+		int re = mapper.deletefileStPic(st);
+		logger.debug("학생 결과{}", re);
+		return re;
+	}
+	
 
 }
