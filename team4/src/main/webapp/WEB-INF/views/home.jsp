@@ -144,7 +144,7 @@ main {
 
     <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">내 강의실</a> 
 
-    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">단어장</a> 
+    <a href="voca/voca_home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">단어장</a> 
 
     <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">발음교정</a> 
 
