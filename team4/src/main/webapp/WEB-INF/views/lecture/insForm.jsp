@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <style>
 
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
@@ -106,7 +107,6 @@ main {
        $(document).ready(function(){
     	   
     	   $('#insbutton').on('click', gotoins)
-    	   $('#godetail').on('click', godetail)
     	   
        })
     	
@@ -117,10 +117,17 @@ main {
     	   window.open(url, name, option);
     	}
        
-       function godetail(){
-    	   var url = "insertForm";
+       function insvid(num){
+    	   var url = "insertVid?ins_num="+num;
     	   var name = "detail";
-    	   var option = "width = 500, height = 500, top = 50, left = 200, location = no"
+    	   var option = "width = 600, height = 700, top = 50, left = 200, location = no"
+    	   window.open(url, name, option);
+       }
+       
+       function  godetail(num){
+    	   var url = "details?ins_num="+num;
+    	   var name = "detail";
+    	   var option = "width = 600, height = 700, top = 50, left = 200, location = no"
     	   window.open(url, name, option);
        }
        
@@ -142,7 +149,7 @@ main {
 <c:if test="${loginId_tc != null}">
   <div class="w3-bar-block">
 
-    <a href="lecture/insertClass" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의등록</a> 
+    <a href="insertClass" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의등록</a> 
 
     <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제등록</a> 
 
@@ -213,6 +220,7 @@ main {
   <c:if test="${loginId_tc != null }">
   	${loginId_tc}님의 강의 목록
   </c:if>
+  <c:if test="${insList != null}">
   	<table width="500">
   		<tr>
   			<th>썸네일</th>
@@ -223,14 +231,16 @@ main {
   		</tr>
   		<c:forEach var="list" items="${insList}">
   		<tr>
-  			<td>${list.ins_thumbnail}</td>
-  			<td><a id="godetail">${list.ins_title}</a></td>
+  			<td><video src="${path}/resources/videofiles/${list.ins_thumbnailsave}" width="100" height="80"></video></td>
+  			<td><a href="javascript: godetail(${list.ins_num})">${list.ins_title}</a></td>
   			<td>${list.ins_cate}</td>
   			<td>${list.ins_date}</td>
   			<td>${list.ins_price}</td>
+  			<td><input type="button" id='insvid' onclick="insvid(${list.ins_num})" value="비디오등록"></td>
   		</tr>
   		</c:forEach>
   	</table>
+  </c:if>
  	<br><input type="button" value="강의등록하기" id="insbutton">
     
   </div>
@@ -253,14 +263,14 @@ main {
   
   <c:if test="${loginId_tc != null && loginId_st == null}">
   	<li class="login">
-	      <a href="login/logout">로그아웃</a>
+	      <a href="../login/logout">로그아웃</a>
 	      <a href="">정보수정</a>
 	 </li>		
   </c:if>
 
   <c:if test="${loginId_tc == null && loginId_st != null}">
   	<li class="dropdown login2">
-	     <a href="login/logout">로그아웃</a>
+	     <a href="../login/logout">로그아웃</a>
          <a href="">마이페이지</a>
     </li>		
   </c:if>

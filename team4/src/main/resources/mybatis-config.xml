@@ -9,6 +9,7 @@
 		<typeAlias type="swdo.syj.yayoung.vo.IndexCardVO" alias="Index" />
 		<typeAlias type="swdo.syj.yayoung.vo.WordCardVO" alias="Word" />
 		<typeAlias type="swdo.syj.yayoung.vo.Ins_classVO" alias="InsClass" />
+		<typeAlias type="swdo.syj.yayoung.vo.Ins_class_vidVO" alias="InsClassVid" />
 	</typeAliases>
 	
 	<mappers>

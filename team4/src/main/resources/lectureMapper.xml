@@ -29,4 +29,31 @@
 		order by ins_num desc
 	</select>
 	
+	<select id="getOneVO" resultType="InsClass" parameterType="int">
+		select 
+			ins_num, 
+			ins_title, 
+			ins_des,
+			to_char(ins_date, 'YYYY-MM-DD') ins_date,
+			ins_cate,
+			ins_vidlist,
+			ins_price,
+			ins_thumbnail,
+			ins_thumbnailsave,
+			tc_id 
+		from 
+			ins_class 
+		where
+			 ins_num = #{ins_num} 
+	</select>
+	
+	<insert id="insert_vid" parameterType="InsClassVid">
+		insert into ins_class_vid(vid_num, vid_title, vid_desc, vid_vidname, vid_vidsavename, ins_num) 
+		values(ins_class_vid_seq.nextval, #{vid_title}, #{vid_desc}, #{vid_vidname}, #{vid_vidsavename}, #{ins_num})
+	</insert>
+	
+	<update id="updateThumb" parameterType="InsClassVid">
+		update ins_class set ins_thumbnailsave = #{vid_vidsavename} where ins_num = #{ins_num}
+	</update>
+	
 </mapper>

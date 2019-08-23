@@ -121,7 +121,7 @@ main {
 
     <a href="lecture/insertClass" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의등록</a> 
 
-    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제등록</a> 
+    <a href="lecture/insertHW" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제등록</a> 
 
     <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">작문답변</a> 
 
@@ -214,14 +214,14 @@ main {
   <c:if test="${loginId_tc != null && loginId_st == null}">
   	<li class="login">
 	      <a href="login/logout">로그아웃</a>
-	      <a href="">정보수정</a>
+	      <a href="join/infoUpFormTc">개인 정보 수정</a>
 	 </li>		
   </c:if>
 
   <c:if test="${loginId_tc == null && loginId_st != null}">
   	<li class="dropdown login2">
 	     <a href="login/logout">로그아웃</a>
-         <a href="">마이페이지</a>
+         <a href="Mypage/MyPage">마이페이지</a>
     </li>		
   </c:if>
   
