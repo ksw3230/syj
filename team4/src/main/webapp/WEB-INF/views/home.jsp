@@ -121,7 +121,7 @@ main {
 
     <a href="lecture/insertClass" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의등록</a> 
 
-    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제등록</a> 
+    <a href="lecture/insertHW" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제등록</a> 
 
     <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">작문답변</a> 
 

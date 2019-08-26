@@ -19,31 +19,45 @@
     function sw_file_add(size) {
         // 최초 sw_file_add_form에 추가하고 다음부터는 sw_file_add_form1, 2, 3, 4, ... 로 계속 추가가 된다.
         // 물론 그에 맞는 div도 계속 생성한다. 차후에 추가한 div를 제거하는 것도 필요하다.
-        eval('sw_file_add_form' + uf).innerHTML +="동영상 : <input type='file' name='vid' size='" + size + "'>" 
+        eval('sw_file_add_form' + uf).innerHTML +="동영상 " + (uf+2) +": <input type='file' name='vid' size='" + size + "'>" 
 												+ "<div id='sw_file_add_form" + (uf+1) + "'></div>";
         										
         								
         uf++;
         									
-        $('input:button.btn').on('click', submitfile);									
+        
     }
-    
-    function submitfile(){
-    	var num = $(this).attr('fnum');
-    	alert(num);
-    	
-    	var form = document.getElementById('form'+num);
-    	
-    	form.submit();
-    	
-    }
+   
 
 </script>
 </head>
 <body>
+
+<script>
+/*
+$(document).ready(function(){
+
+		
+	$("#btn").on('click', function(){
+		
+		$('#file').trigger('click');
+		
+	});
+	
+	$('#file').on('change', function(){
+		var fileValue = $("#file").val().split("\\");
+		var fileName = fileValue[fileValue.length-1]; // 파일명
+		$("#btn").val(fileName);
+	})
+	
+})
+*/
+</script>
+<!--  <input type="button" value="file" id="btn"><p id="name"></p>
+<input type="file" id="file" style="display: none;">	-->
 	
 <form method="post" enctype="multipart/form-data" action="fileUpload">
-		동영상 : <input type="file" name="vid" size="60">
+		동영상 1: <input type="file" name="vid" size="60">
 		<!-- 여기에 추가가 된다. -->
         <div id="sw_file_add_form"></div>
         <a href="javascript:sw_file_add(60);">파일추가</a>
