@@ -1,6 +1,7 @@
 package swdo.syj.yayoung.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import swdo.syj.yayoung.vo.Ins_classVO;
 import swdo.syj.yayoung.vo.Ins_class_vidVO;
@@ -20,7 +21,11 @@ public interface LectureMapper {
 
 	public int insert_vid(Ins_class_vidVO vo);
 
-	int updateThumb(Ins_class_vidVO vo);
+	public int updateThumb(Ins_class_vidVO vo);
+
+	public int insertList(HashMap<String, Object> map);
+
+	public ArrayList<Ins_class_vidVO> getVidList(int ins_num);
 
 	
 	

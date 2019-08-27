@@ -1,8 +1,8 @@
-package swdo.syj.yayoung.controller;
+ package swdo.syj.yayoung.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,11 +19,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.support.MultipartFilter;
 
 import swdo.syj.yayoung.dao.LectureDao;
 import swdo.syj.yayoung.file.FileService;
-import swdo.syj.yayoung.file.Thumbnail;
 import swdo.syj.yayoung.vo.Ins_classVO;
 import swdo.syj.yayoung.vo.Ins_class_vidVO;
 
@@ -36,7 +34,7 @@ public class LectureController {
 	@Autowired
 	LectureDao dao;
 	
-	final String uploadPath = "/project/syj/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/team4/resources/videofiles/";	//동영상 업로드 경로
+	
 	
 	/*
 	 * 강의 등록 페이지 이동
@@ -56,7 +54,6 @@ public class LectureController {
 		
 		return "lecture/insForm";
 	}
-	
 	/*
 	 * 강의등록 폼 열기
 	 */
@@ -96,7 +93,10 @@ public class LectureController {
 	@RequestMapping(value="fileUpload", method=RequestMethod.POST)
 	public String fileUpload (int ins_num, MultipartFile vid[], Model model, HttpServletRequest request){
 		
+		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/videofiles/");
+		//String uploadPath = "c:\\project\\syj\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\team4\\resources\\videofiles\\";
 		
+		String list = "";
 		
 		Ins_class_vidVO vo = new Ins_class_vidVO();
 		logger.debug(ins_num+""); 
@@ -117,17 +117,23 @@ public class LectureController {
 				String savedfile = FileService.saveFile(vid[i], uploadPath);	//파일의 정보와 그 것을 savedfile에 카피함
 				vo.setVid_vidname(vid[i].getOriginalFilename());	// db정보에 담아서
 				vo.setVid_vidsavename(savedfile);	//board에 저장
+				list += vid[i].getOriginalFilename().substring(0,vid[i].getOriginalFilename().lastIndexOf(".")) + "\n\n";
 			}
 			
+
 			if(i==0){
 				int res = dao.updateThumb(vo);
 			}
-				
+			
 			
 			int cnt = dao.insert_vid(vo);
 		}
 
-	
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("ins_num", ins_num);
+		map.put("ins_vidlist", list);
+		int res2 = dao.insertList(map);
+		//System.out.println("list안에는 무엇이 있을가?"+list);
 		
 		model.addAttribute("msg", "비디오 등록 완료");
 	
@@ -138,14 +144,55 @@ public class LectureController {
 	 * 강의 디테일 페이지 이동
 	 */
 	@RequestMapping(value="details", method=RequestMethod.GET)
-	public String details(){
+	public String details(int ins_num, Model model){
+		
+
+		Ins_classVO vo = dao.getOneVO(ins_num);
+		ArrayList<Ins_class_vidVO> list = dao.getVidList(ins_num);
+		
+		for(Ins_class_vidVO v : list){
+			System.out.println(v);
+		}
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("list", list);
+		
+		
 		return "lecture/details";
 	}
-	
+	/*
+	 * 과제등록메인페이지
+	 */
 	@RequestMapping(value="insertHW", method=RequestMethod.GET)
-	public String goHomework(){
+	public String goHomework(HttpSession session, Model model){
+		
+		String tc_id = (String) session.getAttribute("loginId_tc");
+		
+		logger.debug(tc_id);
+		
+		ArrayList<Ins_classVO> list = dao.getInsList(tc_id);
+		
+		logger.debug(list.toString());
+		
+		model.addAttribute("insList", list);
+		
 		return "lecture/HWForm";
 	}
+	/*
+	 * 과제 등록 팝업 페이지
+	 */
+	@RequestMapping(value="goHW", method=RequestMethod.GET)
+	public String goHomework(int ins_num, Model model){
+		
+		Ins_classVO vo = dao.getOneVO(ins_num);
+		ArrayList<Ins_class_vidVO> list = dao.getVidList(ins_num);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("list", list);
+		
+		return "lecture/insertHW";
+	}
+	
 	
 	
 }
