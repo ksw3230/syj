@@ -10,6 +10,10 @@
 		<typeAlias type="swdo.syj.yayoung.vo.WordCardVO" alias="Word" />
 		<typeAlias type="swdo.syj.yayoung.vo.Ins_classVO" alias="InsClass" />
 		<typeAlias type="swdo.syj.yayoung.vo.Ins_class_vidVO" alias="InsClassVid" />
+		<typeAlias type="swdo.syj.yayoung.vo.SignUpClassVO" alias="Suc" />
+		<typeAlias type="swdo.syj.yayoung.vo.CouponVO" alias="Coupon" />
+		<typeAlias type="swdo.syj.yayoung.vo.Homework_mVO" alias="HomeworkM" />
+		<typeAlias type="swdo.syj.yayoung.vo.Homework_wVO" alias="HomeworkW" />
 	</typeAliases>
 	
 	<mappers>
@@ -17,6 +21,7 @@
 		<mapper resource="JoinMapper.xml"/>
 		<mapper resource="VocaMapper.xml"/>
 		<mapper resource="lectureMapper.xml"/>
+		<mapper resource="signupclassMapper.xml"/>
 	</mappers>
 	
 </configuration>

@@ -28,15 +28,27 @@ DROP TABLE teacher CASCADE CONSTRAINTS;
 
 /* Create Tables */
 
+create table coupon( 
+    -- 쿠폰 번호
+    c_num number PRIMARY KEY,
+    -- 쿠폰 할인 가격
+    c_discount number,
+    -- 학생 아이디
+    st_id varchar(20) not null,
+    constraint coupon_fk foreign key(st_id) references student(st_id) on delete cascade
+);
+create sequence coupon_seq;
+
 CREATE TABLE basket
 (
 	-- 장바구니 번호
-	bas_num number NOT NULL,
+	bas_num number PRIMARY KEY,
 	-- 강의등록 번호
 	ins_num  number NOT NULL,
-	PRIMARY KEY (bas_num)
+	constraint basket_fk foreign key(ins_num) references ins_class(ins_num) on delete cascade
 );
 
+create sequence basket_seq;
 
 CREATE TABLE diction
 (
@@ -58,77 +70,91 @@ CREATE TABLE est_class
 	PRIMARY KEY (est_num)
 );
 
-
--- 객관식 숙제
-CREATE TABLE homework_m
-(
-	-- 객관식 숙제 등록
-	hwm_num  NOT NULL,
-	-- 강의 비디오 번호
-	vid_num number NOT NULL,
-	-- 수강신청 번호
-	reg_class number NOT NULL,
-	PRIMARY KEY (hwm_num)
+create table homework_m( -- 객관식 문제
+--문create sequence basket_seq;
+제번호 pk
+m_num number primary key,
+--객관식문제
+m_question varchar(500) not null,
+--객관식찐답
+m_answer number(10) not null,
+--문제 해설
+m_exp varchar(2000),
+--동영상번호 fk(ins_class_vid)
+vid_num number,
+CONSTRAINT homework_m_fk foreign key(vid_num) references ins_class_vid(vid_num) on delete cascade
 );
 
+create sequence homework_m_seq;
 
--- 주관식 문제
-CREATE TABLE homework_w
-(
-	-- 주관식 숙제 번호
-	hww_num number NOT NULL,
-	-- 강의 비디오 번호
-	vid_num number NOT NULL,
-	PRIMARY KEY (hww_num)
+create table homework_w(-- 작문 문제
+--문제번호 pk
+w_num number primary key,
+--문제
+w_question varchar(1000) not null,
+--핵심표현
+w_pointexp varchar(1000) not null,
+--답
+w_answer varchar(1000),
+--동영상번호 fk(ins_class_vid)
+vid_num number,
+CONSTRAINT homework_w_fk foreign key(vid_num) references ins_class_vid(vid_num) on delete cascade
 );
 
-CREATE TABLE ins_class
+create sequence homework_w_seq;
+
+CREATE TABLE ins_class --강의 등록 테이블
 (
-	-- 강의등록 번호
-	ins_num  number NOT NULL,
-	-- 강의 제목
-	ins_title varchar2(30) not null,
-	-- 강의 설명
-	ins_des varchar2(500) not null,
-	-- 강의등록일
-	ins_date date default sysdate,
-	-- 카테고리
-	ins_cate varchar2(20) not null,
-	-- 동영상 목록
-	ins_vidlist varchar2(3000),
-	-- 가격
-	ins_price number,
-	-- 대표썸네일
-	ins_thumbnail varchar2(50),
-	-- 대표썸네일실제저장이름
-	ins_thumbnailsave varchar2(50),
-	-- 선생님 아이디
-	tc_id varchar2(20) NOT NULL,
-	PRIMARY KEY (ins_num )
+   -- 강의등록 번호
+   ins_num  number PRIMARY KEY,
+   -- 강의 제목
+   ins_title varchar2(30) not null,
+   -- 강의 설명
+   ins_des varchar2(500) not null,
+   -- 강의등록일
+   ins_date date default sysdate,
+   -- 카테고리
+   ins_cate varchar2(20) not null,
+   -- 동영상 목록
+   ins_vidlist varchar2(3000),
+   -- 가격
+   ins_price number,
+   -- 대표썸네일
+   ins_thumbnail varchar2(50),
+   -- 대표썸네일실제저장이름
+   ins_thumbnailsave varchar2(50),
+   -- 선생님 아이디
+   tc_id varchar2(20) NOT NULL,
+    constraint ins_fk foreign key(tc_id) references teacher(tc_id) on delete cascade
 );
 
+create sequence ins_class_seq;
+;
+create sequence ins_class_seq;
 -- 강의동영상
 CREATE TABLE ins_class_vid
 (
-	-- 강의 비디오 번호
-	vid_num number NOT NULL,
-	--동영상 제목
-	vid_title varchar2(30) not null,
-	--동영상 강의 설명
-	vid_desc varchar2(500) not null,
-	-- 동영상 저장이름
-	vid_vidname varchar2(200),
-	-- 동영상 실제 저장 이름
-	vid_vidsavename varchar2(50),
-	-- 썸네일이름
-	vid_thumbnail varchar2(50),
-	-- 썸네일실제저장이름
-	vid_thumbsavename varchar2(50),
-	-- 강의등록 번호
-	ins_num  number NOT NULL,
-	PRIMARY KEY (vid_num)
+   -- 강의 비디오 번호
+   vid_num number PRIMARY KEY,
+   --동영상 제목
+   vid_title varchar2(200) not null,
+   --동영상 강의 설명
+   vid_desc varchar2(500) not null,
+   -- 동영상 저장이름
+   vid_vidname varchar2(200),
+   -- 동영상 실제 저장 이름
+   vid_vidsavename varchar2(50),
+   -- 썸네일이름
+   vid_thumbnail varchar2(50),
+   -- 썸네create sequence ins_class_seq;
+제저장이름
+   vid_thumbsavename varchar2(50),
+   -- 강의등록 번호
+   ins_num  number NOT NULL,
+    constraint vd_fk foreign key(ins_num) references ins_class(ins_num) on delete cascade
 );
 
+create sequence ins_class_vid_seq;
 
 -- 학생 노트
 CREATE TABLE note_st
@@ -181,17 +207,22 @@ CREATE TABLE qna_q
 
 
 -- 강의신청 테이블
-CREATE TABLE reg_class
+CREATE TABLE suc_class
 (
 	-- 수강신청 번호
-	reg_class number NOT NULL,
+	suc_num number PRIMARY KEY,
+    -- 수강구매일
+    suc_buydate date default sysdate,
+    -- 진도율
+    progress number default 0,
 	-- 학생아이디
 	st_id varchar2(20) NOT NULL,
 	-- 강의등록 번호
-	ins_num  number,
-	PRIMARY KEY (reg_class)
+	ins_num  number not null,
+    constraint sucid_fk foreign key(st_id) references student(st_id) on delete cascade,
+    constraint sucnum_fk foreign key(ins_num) references ins_class(ins_num) on delete cascade	
 );
-
+create sequence suc_class_seq;
 
 CREATE TABLE scheduler_st
 (
@@ -199,8 +230,10 @@ CREATE TABLE scheduler_st
 	-- 
 	sch_st_num number NOT NULL,
 	-- 학생아이디
-	st_id varchar2(20) NOT NULL,
-	PRIMARY KEY (sch_st_num)
+	st_id varc	ins_num  number not null,
+    constraint sucid_fk foreign key(st_id) references student(st_id) on delete cascade,
+    constraint sucnum_fk foreign key(ins_num) references ins_class(ins_num) on delete cascade	
+
 );
 
 
@@ -208,10 +241,13 @@ CREATE TABLE scheduler_tc
 (
 	-- 선생님 스케줄 번호
 	sch_tc_num number NOT NULL,
-	-- 선생님 아이디
-	-- 
-	tc_id varchar2(20) NOT NULL,
-	PRIMARY KEY (sch_tc_num)
+	-CREATE TABLE suc_class varchar2(20) NOT	suc_num number PRIMARY KEY,
+    -- 수강구매일
+create sequence suc_class_seq;
+    suc_buydate date default sysdate,
+    -- 진도율
+    progress number default 0,
+num)
 );
 
 
@@ -222,11 +258,10 @@ CREATE TABLE sch_st_contents
 	-- 학생 스케줄러 번호
 	-- 
 	sch_st_num number NOT NULL,
-	PRIMARY KEY (sch_st_contents_num)
-);
-
-
-CREATE TABLE sch_tc_contents
+	PRIM	ins_num  number not null,
+    constraint sucid_fk foreign key(st_id) references student(st_id) on delete cascade,
+    constraint sucnum_fk foreign key(ins_num) references ins_class(ins_num) on delete cascade	
+ TABLE sch_tc_contents
 (
 	-- 선생님 스케줄 번호
 	sch_tc_num number NOT NULL,
@@ -235,6 +270,7 @@ CREATE TABLE sch_tc_contents
 	PRIMARY KEY (sch_tc_contents_num)
 );
 
+create sequence suc_class_seq;
 
 CREATE TABLE stamp
 (
@@ -312,8 +348,10 @@ CREATE TABLE Indexcard(
 	CONSTRAINT id_fk foreign key(st_id) references student(st_id) on delete cascade
 );
 
+-- 단어세트번호부여
+create sequence indexcard_seq;
+
 CREATE TABLE word_card(
-	-- 단어 번호
 	word_num number PRIMARY KEY,
 	-- 단어세트 번호
 	card_set_num number NOT NULL,
@@ -327,9 +365,13 @@ CREATE TABLE word_card(
     CONSTRAINT num_fk foreign key(card_set_num) references Indexcard(card_set_num) on delete cascade
 );
 
+-- 단어번호부여
+create sequence wordcard_seq;
+
+
 /* Create Foreign Keys */
 
-ALTER TABLE wrong_answer
+LTER TABLE wrong_answer
 	ADD FOREIGN KEY (hwm_num)
 	REFERENCES homework_m (hwm_num)
 ;
@@ -353,6 +395,7 @@ ALTER TABLE ins_class_vid
 ;
 
 
+
 ALTER TABLE reg_class
 	ADD FOREIGN KEY (ins_num )
 	REFERENCES ins_class (ins_num )
@@ -373,7 +416,7 @@ ALTER TABLE homework_w
 
 ALTER TABLE qna_a
 	ADD FOREIGN KEY (q_num)
-	REFERENCES qna_q (q_num)
+	REFERENCES qna_q(q_num)
 ;
 
 

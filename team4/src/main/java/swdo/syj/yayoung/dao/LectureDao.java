@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import swdo.syj.yayoung.vo.Homework_mVO;
+import swdo.syj.yayoung.vo.Homework_wVO;
 import swdo.syj.yayoung.vo.Ins_classVO;
 import swdo.syj.yayoung.vo.Ins_class_vidVO;
 
@@ -51,6 +53,28 @@ public class LectureDao {
 		return res;
 	}
 
+
+	// 모든 강의 부르기
+	public ArrayList<Ins_classVO> classList() {
+		LectureMapper mapper = session.getMapper(LectureMapper.class);
+		ArrayList<Ins_classVO> list = mapper.classList();
+		return list;
+	}
+
+	// 강의에 해당하는 선생님 이름 부르기
+	public String getName(String tc_id) {
+		LectureMapper mapper = session.getMapper(LectureMapper.class);
+		String name = mapper.getName(tc_id);
+		return name;
+	}
+
+	// 결제하려는 강의 정보 부르기
+	public Ins_classVO buy(int ins_num) {
+		LectureMapper mapper = session.getMapper(LectureMapper.class);
+		Ins_classVO vo = mapper.buy(ins_num);
+		return vo;
+	}
+
 	public int insertList(HashMap<String, Object> map) {
 		LectureMapper mapper = session.getMapper(LectureMapper.class);
 		int res = mapper.insertList(map);
@@ -60,6 +84,30 @@ public class LectureDao {
 	public ArrayList<Ins_class_vidVO> getVidList(int ins_num) {
 		LectureMapper mapper = session.getMapper(LectureMapper.class);
 		ArrayList<Ins_class_vidVO> list = mapper.getVidList(ins_num);
+		return list;
+	}
+
+	public int insertQ(Homework_mVO vo) {
+		LectureMapper mapper = session.getMapper(LectureMapper.class);
+		int res = mapper.insertQ(vo);
+		return res;
+	}
+
+	public ArrayList<Homework_mVO> getQList(int vid_num) {
+		LectureMapper mapper = session.getMapper(LectureMapper.class);
+		ArrayList<Homework_mVO> list = mapper.getQList(vid_num); 
+		return list;
+	}
+
+	public int insertWQ(Homework_wVO vo) {
+		LectureMapper mapper = session.getMapper(LectureMapper.class);
+		int res = mapper.insertQW(vo);
+		return res;
+	}
+
+	public ArrayList<Homework_wVO> getQListW(int vid_num) {
+		LectureMapper mapper = session.getMapper(LectureMapper.class);
+		ArrayList<Homework_wVO> list = mapper.getWList(vid_num);
 		return list;
 	}
 	

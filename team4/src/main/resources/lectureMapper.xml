@@ -56,12 +56,70 @@
 		update ins_class set ins_thumbnailsave = #{vid_vidsavename} where ins_num = #{ins_num}
 	</update>
 	
+
+	<select id="classList" resultType="InsClass">
+		select ins_num, 
+			ins_title, 
+			ins_des,
+			to_char(ins_date, 'YYYY-MM-DD') ins_date,
+			ins_cate,
+			ins_vidlist,
+			ins_price,
+			ins_thumbnail,
+			ins_thumbnailsave,
+			tc_id  
+		from ins_class order by ins_num desc
+	</select>
+	
+	<select id="buy" resultType="InsClass" parameterType="int">
+		select 
+			ins_num, 
+			ins_title, 
+			ins_des,
+			to_char(ins_date, 'YYYY-MM-DD') ins_date,
+			ins_cate,
+			ins_vidlist,
+			ins_price,
+			ins_thumbnail,
+			ins_thumbnailsave,
+			tc_id 
+		from 
+			ins_class 
+		where
+			 ins_num = #{ins_num} 
+		order by ins_num desc
+	</select>
+	
+	<select id="getName" resultType="string">
+		select tc_name from teacher where tc_id = #{tc_id}
+	</select>
+	
+
 	<update id="insertList" parameterType="map">
 		update ins_class set ins_vidlist = #{ins_vidlist} where ins_num = #{ins_num}
 	</update>
 	
 	<select id="getVidList" parameterType="int" resultType="InsClassVid">
 		select * from ins_class_vid where ins_num = #{ins_num}
+	</select>
+
+	
+	<insert id="insertQ" parameterType="HomeworkM">
+		insert into homework_m(m_num, m_question, m_answer, m_exp, vid_num)
+		values(homework_m_seq.nextval, #{m_question}, #{m_answer}, #{m_exp}, #{vid_num})
+	</insert>
+	
+	<select id="getQList" parameterType="int" resultType="HomeworkM">
+		select * from homework_m where vid_num = #{vid_num} order by m_num
+	</select>
+	
+	<insert id="insertQW" parameterType="HomeworkW">
+		insert into homework_w(w_num, w_question, w_pointexp, vid_num)
+		values(homework_w_seq.nextval, #{w_question}, #{w_pointexp}, #{vid_num})
+	</insert>
+	
+	<select id="getWList" parameterType="int" resultType="HomeworkW">		
+		select * from homework_w where vid_num = #{vid_num} order by w_num
 	</select>
 	
 </mapper>

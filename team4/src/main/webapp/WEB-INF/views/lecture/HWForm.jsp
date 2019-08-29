@@ -127,7 +127,7 @@ main {
        function  goHW(num){
     	   var url = "goHW?ins_num="+num;
     	   var name = "hw";
-    	   var option = "width = 900, height = 700, top = 0, left = 200, location = no"
+    	   var option = "width = 1000, height = 700, top = 0, left = 200, location = no"
     	   window.open(url, name, option);
        }
        

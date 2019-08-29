@@ -18,10 +18,13 @@ import org.springframework.ui.Model;
  * */
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import swdo.syj.yayoung.dao.LectureDao;
 import swdo.syj.yayoung.file.FileService;
+import swdo.syj.yayoung.vo.Homework_mVO;
+import swdo.syj.yayoung.vo.Homework_wVO;
 import swdo.syj.yayoung.vo.Ins_classVO;
 import swdo.syj.yayoung.vo.Ins_class_vidVO;
 
@@ -109,7 +112,7 @@ public class LectureController {
 			logger.debug("" + vid[i].getSize());
 			logger.debug("" + vid[i].isEmpty());
 		
-			vo.setVid_title(i+"");
+			vo.setVid_title(vid[i].getOriginalFilename().substring(0,vid[i].getOriginalFilename().lastIndexOf(".")) + "\n\n");
 			vo.setVid_desc(i+"");
 			vo.setIns_num(ins_num);
 			
@@ -192,7 +195,54 @@ public class LectureController {
 		
 		return "lecture/insertHW";
 	}
+	/*
+	 * 과제등록
+	 */
+	@ResponseBody
+	@RequestMapping(value="insertQ", method=RequestMethod.GET)
+	public void homework(Homework_mVO vo){
+		logger.debug(vo.toString());
+		int res = dao.insertQ(vo); 
+	}
+	/*
+	 * 등록된 과제 가져오기
+	 */
+	@ResponseBody
+	@RequestMapping(value="showList", method=RequestMethod.GET)
+	public ArrayList<Homework_mVO> showHWList(int vid_num){
+		ArrayList<Homework_mVO> list = null;
+		list = dao.getQList(vid_num);
+		
+		return list;
+	}
 	
+	/*
+	 * 주관식 과제 등록
+	 */
+	@ResponseBody
+	@RequestMapping(value="insertQW", method=RequestMethod.GET)
+	public void WHomework(Homework_wVO vo){
+		logger.debug(vo.toString());
+		int res = dao.insertWQ(vo);
+	}
+	/*
+	 * 주관식 문제 가져오기
+	 */
+	@ResponseBody
+	@RequestMapping(value="showListW", method=RequestMethod.GET)
+	public ArrayList<Homework_wVO> showHWListW(int vid_num){
+		ArrayList<Homework_wVO> list = null;
+		list = dao.getQListW(vid_num);
+		logger.debug(list.toString());
+		return list;
+	}
+	/*
+	 * 문제 풀기
+	 */
+	@RequestMapping(value="studentHW", method=RequestMethod.GET)
+	public String toStudentHW(){
+		return "lecture/studenthw";
+	}
 	
 	
 }
