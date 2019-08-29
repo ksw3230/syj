@@ -1,6 +1,7 @@
 package swdo.syj.yayoung.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,7 @@ public class LectureDao {
 		return res;
 	}
 
+
 	// 모든 강의 부르기
 	public ArrayList<Ins_classVO> classList() {
 		LectureMapper mapper = session.getMapper(LectureMapper.class);
@@ -70,5 +72,20 @@ public class LectureDao {
 		Ins_classVO vo = mapper.buy(ins_num);
 		return vo;
 	}
+
+	public int insertList(HashMap<String, Object> map) {
+		LectureMapper mapper = session.getMapper(LectureMapper.class);
+		int res = mapper.insertList(map);
+		return res;
+	}
+
+	public ArrayList<Ins_class_vidVO> getVidList(int ins_num) {
+		LectureMapper mapper = session.getMapper(LectureMapper.class);
+		ArrayList<Ins_class_vidVO> list = mapper.getVidList(ins_num);
+		return list;
+	}
+	
+	
+
 	
 }

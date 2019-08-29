@@ -127,7 +127,7 @@ main {
        function  godetail(num){
     	   var url = "details?ins_num="+num;
     	   var name = "detail";
-    	   var option = "width = 600, height = 700, top = 50, left = 200, location = no"
+    	   var option = "width = 800, height = 700, top = 50, left = 200, location = no"
     	   window.open(url, name, option);
        }
        
@@ -217,11 +217,14 @@ main {
   <!-- Header -->
 
   <div class="w3-container" style="margin-top:80px" id="showcase">
+  
+  <h1>강의 등록</h1>
+  
   <c:if test="${loginId_tc != null }">
   	${loginId_tc}님의 강의 목록
   </c:if>
   <c:if test="${insList != null}">
-  	<table width="500">
+  	<table width="80%">
   		<tr>
   			<th>썸네일</th>
   			<th>강의 제목</th>
@@ -231,12 +234,12 @@ main {
   		</tr>
   		<c:forEach var="list" items="${insList}">
   		<tr>
-  			<td><video src="${path}/resources/videofiles/${list.ins_thumbnailsave}" width="100" height="80"></video></td>
-  			<td><a href="javascript: godetail(${list.ins_num})">${list.ins_title}</a></td>
-  			<td>${list.ins_cate}</td>
-  			<td>${list.ins_date}</td>
-  			<td>${list.ins_price}</td>
-  			<td><input type="button" id='insvid' onclick="insvid(${list.ins_num})" value="비디오등록"></td>
+  			<th><video src="${path}/resources/videofiles/${list.ins_thumbnailsave}" width="100" height="80"></video></th>
+  			<th><a href="javascript: godetail(${list.ins_num})">${list.ins_title}</a></th>
+  			<th>${list.ins_cate}</th>
+  			<th>${list.ins_date}</th>
+  			<th>${list.ins_price}원</th>
+  			<th><input type="button" id='insvid' onclick="insvid(${list.ins_num})" value="비디오등록"></th>
   		</tr>
   		</c:forEach>
   	</table>

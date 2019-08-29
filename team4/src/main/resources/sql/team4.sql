@@ -129,7 +129,7 @@ CREATE TABLE ins_class_vid
 	--동영상 강의 설명
 	vid_desc varchar2(500) not null,
 	-- 동영상 저장이름
-	vid_vidname varchar2(50),
+	vid_vidname varchar2(200),
 	-- 동영상 실제 저장 이름
 	vid_vidsavename varchar2(50),
 	-- 썸네일이름
