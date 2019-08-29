@@ -45,7 +45,11 @@ CREATE TABLE basket
 	bas_num number PRIMARY KEY,
 	-- 강의등록 번호
 	ins_num  number NOT NULL,
+<<<<<<< HEAD
 	constraint basket_fk foreign key(ins_num) references ins_class(ins_num) on delete cascade
+=======
+    constraint basket_fk foreign key(ins_num) references ins_class(ins_num) on delete cascade
+>>>>>>> branch 'master' of https://github.com/ksw3230/syj.git
 );
 
 create sequence basket_seq;
@@ -105,6 +109,7 @@ create sequence homework_w_seq;
 
 CREATE TABLE ins_class --강의 등록 테이블
 (
+<<<<<<< HEAD
    -- 강의등록 번호
    ins_num  number PRIMARY KEY,
    -- 강의 제목
@@ -125,15 +130,41 @@ CREATE TABLE ins_class --강의 등록 테이블
    ins_thumbnailsave varchar2(50),
    -- 선생님 아이디
    tc_id varchar2(20) NOT NULL,
+=======
+	-- 강의등록 번호
+	ins_num  number PRIMARY KEY,
+	-- 강의 제목
+	ins_title varchar2(30) not null,
+	-- 강의 설명
+	ins_des varchar2(500) not null,
+	-- 강의등록일
+	ins_date date default sysdate,
+	-- 카테고리
+	ins_cate varchar2(20) not null,
+	-- 동영상 목록
+	ins_vidlist varchar2(3000),
+	-- 가격
+	ins_price number,
+	-- 대표썸네일
+	ins_thumbnail varchar2(50),
+	-- 대표썸네일실제저장이름
+	ins_thumbnailsave varchar2(50),
+	-- 선생님 아이디
+	tc_id varchar2(20) NOT NULL,
+>>>>>>> branch 'master' of https://github.com/ksw3230/syj.git
     constraint ins_fk foreign key(tc_id) references teacher(tc_id) on delete cascade
 );
+<<<<<<< HEAD
 
 create sequence ins_class_seq;
 ;
+=======
+>>>>>>> branch 'master' of https://github.com/ksw3230/syj.git
 create sequence ins_class_seq;
 -- 강의동영상
 CREATE TABLE ins_class_vid
 (
+<<<<<<< HEAD
    -- 강의 비디오 번호
    vid_num number PRIMARY KEY,
    --동영상 제목
@@ -151,11 +182,33 @@ CREATE TABLE ins_class_vid
    vid_thumbsavename varchar2(50),
    -- 강의등록 번호
    ins_num  number NOT NULL,
+=======
+	-- 강의 비디오 번호
+	vid_num number PRIMARY KEY,
+	--동영상 제목
+	vid_title varchar2(30) not null,
+	--동영상 강의 설명
+	vid_desc varchar2(500) not null,
+	-- 동영상 저장이름
+	vid_vidname varchar2(200),
+	-- 동영상 실제 저장 이름
+	vid_vidsavename varchar2(50),
+	-- 썸네일이름
+	vid_thumbnail varchar2(50),
+	-- 썸네일실제저장이름
+	vid_thumbsavename varchar2(50),
+	-- 강의등록 번호
+	ins_num  number NOT NULL,
+>>>>>>> branch 'master' of https://github.com/ksw3230/syj.git
     constraint vd_fk foreign key(ins_num) references ins_class(ins_num) on delete cascade
 );
+<<<<<<< HEAD
 
 create sequence ins_class_vid_seq;
 
+=======
+create sequence ins_class_vid_seq;
+>>>>>>> branch 'master' of https://github.com/ksw3230/syj.git
 -- 학생 노트
 CREATE TABLE note_st
 (
@@ -223,6 +276,10 @@ CREATE TABLE suc_class
     constraint sucnum_fk foreign key(ins_num) references ins_class(ins_num) on delete cascade	
 );
 create sequence suc_class_seq;
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/ksw3230/syj.git
 
 CREATE TABLE scheduler_st
 (
@@ -368,7 +425,10 @@ CREATE TABLE word_card(
 -- 단어번호부여
 create sequence wordcard_seq;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/ksw3230/syj.git
 /* Create Foreign Keys */
 
 LTER TABLE wrong_answer

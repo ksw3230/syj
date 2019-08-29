@@ -4,5 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="swdo.syj.yayoung.dao.VocaMapper">
-  
+  	<insert id="insert" parameterType="string">
+  		insert into indexcard values(indexcard_seq.nextval, #{st_id})
+  	</insert>
+  	
+  	<select id="getMaxnumber" parameterType="string" resultType="int">
+  		select max(card_set_num) from indexcard where st_id = #{st_id}
+  	</select>
   </mapper>

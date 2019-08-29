@@ -5,14 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="../resources/js/jquery-3.4.1.js"></script>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<script>
-</script>
 </head>
 <body>
-
-	
-
+<h1>[단어장]</h1>
+<form action="voca_make" method="post">
+<input type="hidden" name="card_set_num" value="${card_set_num }" >
+	<tr>
+		<th><th>
+	</tr>
+</form>
 </body>
 </html>

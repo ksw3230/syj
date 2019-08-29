@@ -103,6 +103,7 @@
 		select * from ins_class_vid where ins_num = #{ins_num}
 	</select>
 
+<<<<<<< HEAD
 	
 	<insert id="insertQ" parameterType="HomeworkM">
 		insert into homework_m(m_num, m_question, m_answer, m_exp, vid_num)
@@ -121,5 +122,7 @@
 	<select id="getWList" parameterType="int" resultType="HomeworkW">		
 		select * from homework_w where vid_num = #{vid_num} order by w_num
 	</select>
+=======
+>>>>>>> branch 'master' of https://github.com/ksw3230/syj.git
 	
 </mapper>

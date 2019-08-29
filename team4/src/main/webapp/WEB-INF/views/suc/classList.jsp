@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<title>YaYoung</title>
+ <title>강의등록</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <style>
 
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
@@ -64,7 +65,6 @@ li.login2 {
 
 
 
-
 li.active {
 	background-color: gray;
 	
@@ -101,7 +101,60 @@ main {
 	width: 100%;
 }
 
+.button {
+        border: none;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+      }
 </style>
+<script src="../resources/js/jquery-3.4.1.js"></script>
+<script>
+	$(document).ready(function(){
+    	   
+       $('.basket').on('click', basket)   
+       $('.buy').on('click', function(){
+    	   var n = $(this).attr('inum');
+    	   buy(n);
+       })
+       $('.button').on('click', function(){
+    	   var n = $('#category>option:selected').val();
+    	   button(n);
+       })
+    })
+       
+   	function basket() {
+		var ins_num = $('#ins_num').val();
+		
+		$.ajax({
+			url:'basket',
+			type:'get',
+			data:{ins_num:ins_num},
+			success:function(){
+				alert('장바구니 담기 성공');
+			},
+			error:function(){
+				alert('장바구니 담기 실패');	
+			}
+		});
+	}
+       
+    function buy(n) {
+    	// 구매 버튼을 누르면 강의 정보를 가지고 온 후 팝업창이 열려야함
+    	var ins_num = n;
+    	var url = "../suc/BuyForm?ins_num="+ins_num;
+    	var name = "BuyForm";
+    	var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+    	window.open(url, name, option);
+   	  }
+    
+    function button(n) {
+		var ins_cate = n;
+		
+		alert(n);
+	}
+
+</script>
 <body>
 
 <!-- Sidebar/menu -->
@@ -119,9 +172,9 @@ main {
 <c:if test="${loginId_tc != null}">
   <div class="w3-bar-block">
 
-    <a href="lecture/insertClass" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의등록</a> 
+    <a href="insertClass" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의등록</a> 
 
-    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제등록</a> 
+    <a href="../lecture/insertHW" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제등록</a> 
 
     <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">작문답변</a> 
 
@@ -144,7 +197,7 @@ main {
 
     <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">내 강의실</a> 
 
-    <a href="voca_home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">단어장</a> 
+    <a href="../voca/voca_home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">단어장</a> 
 
     <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">발음교정</a> 
 
@@ -152,11 +205,12 @@ main {
 
     <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제</a>
 	
-	<a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의검색</a>
+	<a href="classList" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의검색</a>
 	 
 	<a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">F&A</a>
   </div>
 </c:if>
+
 </nav>
 
 <!-- Top menu on small screens -->
@@ -184,20 +238,48 @@ main {
  
 
   <!-- Header -->
+
   <div class="w3-container" style="margin-top:80px" id="showcase">
+  	<div>
+  		<select id="category">
+  			<option value="초급">초급</option>
+  			<option value="중급">중급</option>
+  			<option value="고급">고급</option>
+  		</select>
+  		<input type="text" placeholder="강의검색" id="text">
+  		<input type="image" src="../resources/images/button.jpg" class="button">
+  	</div>
+ 	 
+	  	<table width="500">
+	  		<tr>
+	  			<th>강의 제목</th>
+	  			<th>강의 등록일</th>
+	  			<th>강사 이름</th>
+	  			<th>강의 가격</th>
+	  		</tr>
+	  		<c:forEach var="list" items="${list}">
+	  		<tr id="list">
+	  			<td>
+	  				<input type="hidden" name="ins_num" id="ins_num" value="${list.ins_num }">
+	  				${list.ins_title}
+	  			</td>
+	  			<td>${list.ins_date}</td>
+	  			<td>${list.tc_name}</td>
+	  			<td>${list.ins_price}</td>
+	  			<td>
+	  				<input type="button" value="장바구니" class="basket" inum="${list.ins_num }">
+	  				<input type="button" value="바로구매" class="buy" inum="${list.ins_num }">
+	  			</td> 			
+	  		</tr>
+	  		</c:forEach>
+	  	</table>   
+  </div>
 
-  	<a href="">초급</a><br>
-  	<a href="">중급</a><br>
-  	<a href="">고급</a><br>
-  	<a href="../voca/voca_make"><img src="../resources/images/더하기.jpg" width="30" height="40"></a>
-    <h1 class="w3-jumbo"><b>최근 학습한 세트</b></h1>
 
-    <h1 class="w3-jumbo"><b>수강 시 체크한 단어</b></h1>
-    
 <!-- Navbar -->
 <div class="w3-top">
  <ul>
-  <li><a href=".">YaYoung</a></li>
+  <li><a href="../">YaYoung</a></li>
   
   <c:if test="${loginId_st != null}">
   <li><a href="">장바구니</a></li>
@@ -211,15 +293,15 @@ main {
   
   <c:if test="${loginId_tc != null && loginId_st == null}">
   	<li class="login">
-	      <a href="login/logout">로그아웃</a>
-	      <a href="">정보수정</a>
+	      <a href="../login/logout">로그아웃</a>
+	       <a href="../join/infoUpFormTc">개인 정보 수정</a>
 	 </li>		
   </c:if>
 
   <c:if test="${loginId_tc == null && loginId_st != null}">
   	<li class="dropdown login2">
-	     <a href="login/logout">로그아웃</a>
-         <a href="">마이페이지</a>
+	     <a href="../login/logout">로그아웃</a>
+         <a href="../Mypage/MyPage">마이페이지</a>
     </li>		
   </c:if>
   
@@ -242,23 +324,7 @@ main {
   
   
 </ul>
- <!--
-  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="." class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 1</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 2</a>
-	<a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 3</a>
-	<a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 4</a>
-</div>
-
-  <!-- Navbar on small screens -->
-  <!-- <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 4</a>
-  </div> -->
+ 
 </div>
 
 

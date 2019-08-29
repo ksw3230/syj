@@ -38,6 +38,7 @@ public interface LectureMapper {
 
 	public ArrayList<Ins_class_vidVO> getVidList(int ins_num);
 
+<<<<<<< HEAD
 
 	public int insertQ(Homework_mVO vo);
 
@@ -46,6 +47,8 @@ public interface LectureMapper {
 	public int insertQW(Homework_wVO vo);
 
 	public ArrayList<Homework_wVO> getWList(int vid_num);
+=======
+>>>>>>> branch 'master' of https://github.com/ksw3230/syj.git
 
 	
 	

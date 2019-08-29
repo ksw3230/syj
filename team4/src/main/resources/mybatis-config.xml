@@ -12,8 +12,11 @@
 		<typeAlias type="swdo.syj.yayoung.vo.Ins_class_vidVO" alias="InsClassVid" />
 		<typeAlias type="swdo.syj.yayoung.vo.SignUpClassVO" alias="Suc" />
 		<typeAlias type="swdo.syj.yayoung.vo.CouponVO" alias="Coupon" />
+<<<<<<< HEAD
 		<typeAlias type="swdo.syj.yayoung.vo.Homework_mVO" alias="HomeworkM" />
 		<typeAlias type="swdo.syj.yayoung.vo.Homework_wVO" alias="HomeworkW" />
+=======
+>>>>>>> branch 'master' of https://github.com/ksw3230/syj.git
 	</typeAliases>
 	
 	<mappers>
