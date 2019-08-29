@@ -20,7 +20,15 @@ public interface LectureMapper {
 
 	public int insert_vid(Ins_class_vidVO vo);
 
-	int updateThumb(Ins_class_vidVO vo);
+	public int updateThumb(Ins_class_vidVO vo);
+
+	public ArrayList<Ins_classVO> classList();
+
+	public Ins_classVO buy(int ins_num);
+
+	public String getName(String tc_id);
+
+	
 
 	
 	

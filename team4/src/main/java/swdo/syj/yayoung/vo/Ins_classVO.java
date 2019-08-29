@@ -12,12 +12,14 @@ public class Ins_classVO {
 	private String ins_thumbnail;
 	private String ins_thumbnailsave;
 	private String tc_id;
+	private String tc_name;
 	
 	public Ins_classVO() {
 	}
 
 	public Ins_classVO(int ins_num, String ins_title, String ins_des, String ins_date, String ins_cate,
-			String ins_vidlist, int ins_price, String ins_thumbnail, String ins_thumbnailsave, String tc_id) {
+			String ins_vidlist, int ins_price, String ins_thumbnail, String ins_thumbnailsave, String tc_id,
+			String tc_name) {
 		super();
 		this.ins_num = ins_num;
 		this.ins_title = ins_title;
@@ -29,6 +31,7 @@ public class Ins_classVO {
 		this.ins_thumbnail = ins_thumbnail;
 		this.ins_thumbnailsave = ins_thumbnailsave;
 		this.tc_id = tc_id;
+		this.tc_name = tc_name;
 	}
 
 	public int getIns_num() {
@@ -111,14 +114,22 @@ public class Ins_classVO {
 		this.tc_id = tc_id;
 	}
 
+	public String getTc_name() {
+		return tc_name;
+	}
+
+	public void setTc_name(String tc_name) {
+		this.tc_name = tc_name;
+	}
+
 	@Override
 	public String toString() {
 		return "Ins_classVO [ins_num=" + ins_num + ", ins_title=" + ins_title + ", ins_des=" + ins_des + ", ins_date="
 				+ ins_date + ", ins_cate=" + ins_cate + ", ins_vidlist=" + ins_vidlist + ", ins_price=" + ins_price
 				+ ", ins_thumbnail=" + ins_thumbnail + ", ins_thumbnailsave=" + ins_thumbnailsave + ", tc_id=" + tc_id
-				+ "]";
+				+ ", tc_name=" + tc_name + "]";
 	}
-	
+
 	
 	
 }

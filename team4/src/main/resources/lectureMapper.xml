@@ -56,4 +56,42 @@
 		update ins_class set ins_thumbnailsave = #{vid_vidsavename} where ins_num = #{ins_num}
 	</update>
 	
+	<select id="classList" resultType="InsClass">
+		select ins_num, 
+			ins_title, 
+			ins_des,
+			to_char(ins_date, 'YYYY-MM-DD') ins_date,
+			ins_cate,
+			ins_vidlist,
+			ins_price,
+			ins_thumbnail,
+			ins_thumbnailsave,
+			tc_id  
+		from ins_class order by ins_num desc
+	</select>
+	
+	<select id="buy" resultType="InsClass" parameterType="int">
+		select 
+			ins_num, 
+			ins_title, 
+			ins_des,
+			to_char(ins_date, 'YYYY-MM-DD') ins_date,
+			ins_cate,
+			ins_vidlist,
+			ins_price,
+			ins_thumbnail,
+			ins_thumbnailsave,
+			tc_id 
+		from 
+			ins_class 
+		where
+			 ins_num = #{ins_num} 
+		order by ins_num desc
+	</select>
+	
+	<select id="getName" resultType="string">
+		select tc_name from teacher where tc_id = #{tc_id}
+	</select>
+	
+	
 </mapper>

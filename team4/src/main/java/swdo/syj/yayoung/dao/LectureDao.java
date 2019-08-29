@@ -49,7 +49,26 @@ public class LectureDao {
 		int res = mapper.updateThumb(vo);
 		return res;
 	}
-	
-	
+
+	// 모든 강의 부르기
+	public ArrayList<Ins_classVO> classList() {
+		LectureMapper mapper = session.getMapper(LectureMapper.class);
+		ArrayList<Ins_classVO> list = mapper.classList();
+		return list;
+	}
+
+	// 강의에 해당하는 선생님 이름 부르기
+	public String getName(String tc_id) {
+		LectureMapper mapper = session.getMapper(LectureMapper.class);
+		String name = mapper.getName(tc_id);
+		return name;
+	}
+
+	// 결제하려는 강의 정보 부르기
+	public Ins_classVO buy(int ins_num) {
+		LectureMapper mapper = session.getMapper(LectureMapper.class);
+		Ins_classVO vo = mapper.buy(ins_num);
+		return vo;
+	}
 	
 }

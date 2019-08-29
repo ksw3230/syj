@@ -152,7 +152,7 @@ main {
 
     <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">과제</a>
 	
-	<a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의검색</a>
+	<a href="suc/classList" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">강의검색</a>
 	 
 	<a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">F&A</a>
   </div>
