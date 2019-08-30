@@ -25,20 +25,15 @@ public interface LectureMapper {
 
 	public int updateThumb(Ins_class_vidVO vo);
 
-
 	public ArrayList<Ins_classVO> classList();
 
 	public Ins_classVO buy(int ins_num);
 
 	public String getName(String tc_id);
 
-	
-
 	public int insertList(HashMap<String, Object> map);
 
 	public ArrayList<Ins_class_vidVO> getVidList(int ins_num);
-
-<<<<<<< HEAD
 
 	public int insertQ(Homework_mVO vo);
 
@@ -47,8 +42,7 @@ public interface LectureMapper {
 	public int insertQW(Homework_wVO vo);
 
 	public ArrayList<Homework_wVO> getWList(int vid_num);
-=======
->>>>>>> branch 'master' of https://github.com/ksw3230/syj.git
+
 
 	
 	
